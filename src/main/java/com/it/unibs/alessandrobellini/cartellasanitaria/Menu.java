@@ -5,11 +5,16 @@ import java.util.Scanner;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.it.unibs.alessandrobellini.cartellasanitaria.logic.AggiornaDati;
+import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InizializzaDati;
+
 public class Menu {
 	
 	private final static String MESSAGGIO_PRINCIPALE = "INSERIRE IL NUMERO DELLA FUNZIONALITA' \n"
-			+ "[0] termina programma";
-	private int nFuncMax = 0;
+			+ "[0] termina programma \n"
+			+ "[1] inserisci dati paziente \n"
+			+ "[2] aggiorna dati paziente \n";
+	private int nFuncMax = 2;
 	
 	
 	
@@ -19,12 +24,12 @@ public class Menu {
 	
 	public void menuPrincipale() {
 		boolean onRunning = true;
+		Scanner scanner = null;
 		while (onRunning) {
 		
 			System.out.println(MESSAGGIO_PRINCIPALE);
-			Scanner scanner  = new Scanner (System.in);
+			scanner = new Scanner(System.in);
 			String input = scanner.nextLine();
-			scanner.close();
 			if (!StringUtils.isNumeric(input)) {
 				System.out.println("l'input non è un numero, inserire un numero della lista");
 				continue;
@@ -41,6 +46,7 @@ public class Menu {
 			}
 			
 		}
+		scanner.close();
 			
 			
 		
@@ -49,6 +55,14 @@ public class Menu {
 	private void manageInput(int input) {
 		switch (input) {
 		case 1: {
+			InizializzaDati init = new InizializzaDati();
+			init.execute();
+ 
+		break; //rompi lo switch ed esci da esso
+		}
+		case 2: {
+			AggiornaDati aggiorna = new AggiornaDati();
+			aggiorna.execute();
  
 		break; //rompi lo switch ed esci da esso
 		}

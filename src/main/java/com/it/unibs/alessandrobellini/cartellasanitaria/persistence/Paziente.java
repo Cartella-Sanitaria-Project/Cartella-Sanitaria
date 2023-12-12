@@ -21,7 +21,7 @@ public class Paziente implements Serializable {
 	private GruppoSanguinio gruppoSanguinio;
 	
 	public Paziente() {
-
+		gruppoSanguinio = new GruppoSanguinio();
 	}
 	
 	public String getNome() {

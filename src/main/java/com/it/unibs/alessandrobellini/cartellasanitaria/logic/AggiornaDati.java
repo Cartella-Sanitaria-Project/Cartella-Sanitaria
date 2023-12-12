@@ -1,5 +1,6 @@
 package com.it.unibs.alessandrobellini.cartellasanitaria.logic;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.apache.commons.lang3.StringUtils;
@@ -9,7 +10,6 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.GruppoSangui
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Paziente;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
-import com.it.unibs.alessandrobellini.cartellasanitaria.utils.PazienteUtils;
 
 public class AggiornaDati {
 	
@@ -24,23 +24,24 @@ public class AggiornaDati {
 		
 		boolean onRunning = true;
 		System.out.println(MESSAGGIO_AGGIORNAMENTO);
+		Scanner scanner = null;
 		while(onRunning) {
 			String messaggioInit = "[1] Nome: " + paziente.getNome() + "\n"
-					+ "[2] Cognome" + paziente.getCognome() + "\n"
-					+ "[3] Indirizzo " + paziente.getIndirizzo() + "\n"
-				    + "[4] Telefono " + paziente.getTelefono() + "\n"
-				    + "[5] Email " + paziente.getEmail() + "\n"
-				    + "[6] Data di nascita " + paziente.getDataNascita() + "\n"
-				    + "[7] Luogo di nascita " + paziente.getLuogoNascita() + "\n"
-			        + "[8] Genere " + paziente.getGenere() + "\n"
-			        + "[9] Fattore Rh " + paziente.getGruppoSanguinio().getFattoreRh() + "\n"
-			        + "[10] Gruppo sanguinio " + paziente.getGruppoSanguinio().getGruppo() + "\n"
-			        + "[11] Codice fiscale " + paziente.getCodiceFiscale() + "\n"
-			        + "[0] uscita, torna al menù principale: \n";
+					+ "[2] Cognome: " + paziente.getCognome() + "\n"
+					+ "[3] Indirizzo: " + paziente.getIndirizzo() + "\n"
+				    + "[4] Telefono: " + paziente.getTelefono() + "\n"
+				    + "[5] Email: " + paziente.getEmail() + "\n"
+				    + "[6] Data di nascita: " + paziente.getDataNascita() + "\n"
+				    + "[7] Luogo di nascita: " + paziente.getLuogoNascita() + "\n"
+			        + "[8] Genere: " + paziente.getGenere() + "\n"
+			        + "[9] Fattore Rh: " + paziente.getGruppoSanguinio().getFattoreRh() + "\n"
+			        + "[10] Gruppo sanguinio: " + paziente.getGruppoSanguinio().getGruppo() + "\n"
+			        + "[11] Codice fiscale: " + paziente.getCodiceFiscale() + "\n"
+			        + "[0] uscita, torna al menù principale \n";
 			System.out.println(messaggioInit);
-			Scanner scanner  = new Scanner (System.in);
+			scanner = new Scanner (System.in);
 			String input = scanner.nextLine();
-			scanner.close();
+			
 			if (!StringUtils.isNumeric(input)) {
 				System.out.println("l'input non è un numero, inserire un numero della lista, riprova! \n");
 				continue;
@@ -85,8 +86,7 @@ public class AggiornaDati {
 		break; 
 		}
 		case 4: {
-			String  telefono = InputDati.leggiStringaNonVuota("Inserisci di nuovo il numero di telefono \n");
-			
+			paziente = manageTelefono(paziente);
 			 
 		break; 
 		}
@@ -141,6 +141,62 @@ public class AggiornaDati {
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + input);
 		}
+		return paziente;
+	}
+	
+	
+	
+	private Paziente manageTelefono(Paziente paziente) {
+		String primoInput = InputDati.leggiStringaNonVuota("Inserisci 1 per aggiungere un nuovo numero "
+				+ "o un altro carattere per aggiornarne uno esistente\n");
+		if (primoInput != null && primoInput.equals("1")) {
+			String nuovoNumero = InputDati.leggiStringaNonVuota("inserisci il nuovo numero\n");
+			paziente.addTelefono(nuovoNumero);
+			
+		} else {
+			List<String> telefoni = paziente.getTelefono();
+			
+			if (telefoni == null || telefoni.size() == 0) {
+				System.out.println("Non hai ancora associato nessun numero di telefono");
+				return paziente;
+			}
+			
+			int i = 0;
+			StringBuffer sb = new StringBuffer("Lista dei telefoni:\n");
+			
+			for (String tel : telefoni) {
+				i++;
+				sb.append("[").append(i).append("] ").append(tel).append("\n");
+				
+			}
+			
+			sb.append("Seleziona il numero di telefono da modificare, oppure digita 0 per annullare la modifica");
+			System.out.println(sb.toString());
+			
+			@SuppressWarnings("resource")
+			Scanner scanner = new Scanner(System.in);
+			String input = scanner.nextLine();
+			
+			if (!StringUtils.isNumeric(input)) {
+				System.out.println("l'input non è un numero, inserire un numero della lista, torno al menu di aggiornamento \n");
+				return paziente;
+			}
+			int inputNum = NumberUtils.toInt(input, -1);
+			if((inputNum < 0) || (inputNum > i)) {
+				System.out.println(" il numero non è compreso tra quelli della lista, torno al menu di aggiornamento \n");
+				return paziente;
+			}
+			
+			if(inputNum == 0) {
+				System.out.println("Modifica del numero di telefono annullata");
+			} else {
+				String nuovoNumero = InputDati.leggiStringaNonVuota("inserisci il nuovo numero da aggiornare\n");
+				telefoni.set(i-1, nuovoNumero);
+				paziente.setTelefono(telefoni);
+			}
+			
+		}
+		
 		return paziente;
 	}
 	

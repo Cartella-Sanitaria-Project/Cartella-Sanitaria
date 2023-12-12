@@ -98,7 +98,7 @@ public class InputDati
 	     catch (InputMismatchException e)
 	      {
 	       System.out.println(ERRORE_FORMATO);
-	       String daButtare = lettore.next();
+	       lettore.next();
 	      }
 	    } while (!finito);
 	   return valoreLetto;
@@ -166,7 +166,7 @@ public class InputDati
 	     catch (InputMismatchException e)
 	      {
 	       System.out.println(ERRORE_FORMATO);
-	       String daButtare = lettore.next();
+	       lettore.next();
 	      }
 	    } while (!finito);
 	   return valoreLetto;

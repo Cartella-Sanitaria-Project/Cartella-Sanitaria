@@ -18,6 +18,7 @@ public class ApplicationSession {
 	//metodi di accesso all'istanza pubblici e static
 	private ApplicationSession() {
 		//nessuna altra classe può creare sessioni, solo questa
+		paziente = new Paziente();
 	}
 	public static ApplicationSession getIstance() {
 		if(istance == null)

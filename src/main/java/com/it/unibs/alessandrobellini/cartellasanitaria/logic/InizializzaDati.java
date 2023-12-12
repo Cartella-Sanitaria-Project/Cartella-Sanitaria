@@ -26,6 +26,9 @@ public class InizializzaDati {
 		String  telefono = InputDati.leggiStringaNonVuota("Inserisci il numero di telefono \n");
 		String  eMail = InputDati.leggiStringaNonVuota("Inserisci l'e-mail \n");
 		String  dataNascita = InputDati.leggiStringaNonVuota("Inserisci la data nel formato yyyy-MM-dd \n");
+		while(!PazienteUtils.isDataNascitaValid(dataNascita)) {
+			dataNascita = InputDati.leggiStringaNonVuota("Inserisci la data nel formato yyyy-MM-dd \n");
+		}
 		String  luogoDiNascita = InputDati.leggiStringaNonVuota("Inserisci il luogo di nascita \n");
 		String  genere = InputDati.leggiStringaNonVuota("Inserisci il genere \n");
 		String fattoreRh = InputDati.leggiStringaNonVuota("Inserisci il fattore Rh ( positivo o negativo ) \n"); 
@@ -38,9 +41,6 @@ public class InizializzaDati {
 		paziente.setIndirizzo(indirizzo);
 		paziente.addTelefono(telefono);
 		paziente.setEmail(eMail);
-		while(!PazienteUtils.isDataNascitaValid(dataNascita)) {
-			dataNascita = InputDati.leggiStringaNonVuota("Inserisci la data nel formato yyyy-MM-dd \n");
-		}
 		paziente.setDataNascita(dataNascita);//verifica
 		paziente.setLuogoNascita(luogoDiNascita);
 		paziente.setGenere(genere);
