@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Esame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Paziente;
+import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame;
 
 /*
  * singleton : una sola istanza per tutta l'applicazione
@@ -15,6 +16,7 @@ public class ApplicationSession {
 	private static ApplicationSession istance;
 	private Paziente paziente;
 	private Map<Long, Esame> esami;
+	private Map <Long ,PrestazioneEsame> prestazioni;
 	
 	
 	//costruttore privato 
@@ -44,6 +46,17 @@ public class ApplicationSession {
 	}
 	public void addEsame(Long key, Esame esame) {
 		esami.put(key, esame);
+	}
+	public Map<Long, PrestazioneEsame> getPrestazioni() {
+		return prestazioni;
+	}
+	public void setPrestazioni(Map<Long, PrestazioneEsame> prestazioni) {
+		this.prestazioni = prestazioni;
+	}
+	public void addPrestazione (Long key, PrestazioneEsame prestazione) {
+		prestazioni.put(key, prestazione);
+		
+		
 	}
 	
 	//i metodi static possono essere chiamati anche senza un'istanza creata
