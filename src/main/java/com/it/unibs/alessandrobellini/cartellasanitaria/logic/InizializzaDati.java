@@ -10,6 +10,15 @@ public class InizializzaDati {
 	public void execute() {
 		ApplicationSession sessione = ApplicationSession.getIstance();
 		
+		if (sessione.getPaziente() != null 
+				&& sessione.getPaziente().getCodiceSanitario() != null
+				&& !sessione.getPaziente().getCodiceSanitario().isEmpty()) {
+			System.out.println("I dati del paziente sono già stati inizializzati, "
+					+ "non è consentito re-inizializzarli, utilizza la funzione di "
+					+ "aggiornamento dei campi");
+			return;
+		}
+		
 		Paziente paziente = new Paziente();
 		String  nome = InputDati.leggiStringaNonVuota("Inserisci il nome \n");
 		String  cognome = InputDati.leggiStringaNonVuota("Inserisci il cognome \n");

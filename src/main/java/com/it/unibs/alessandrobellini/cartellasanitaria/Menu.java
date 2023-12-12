@@ -24,6 +24,7 @@ public class Menu {
 			System.out.println(MESSAGGIO_PRINCIPALE);
 			Scanner scanner  = new Scanner (System.in);
 			String input = scanner.nextLine();
+			scanner.close();
 			if (!StringUtils.isNumeric(input)) {
 				System.out.println("l'input non è un numero, inserire un numero della lista");
 				continue;
