@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.AggiornaDati;
+import com.it.unibs.alessandrobellini.cartellasanitaria.logic.AggiungiEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InizializzaDati;
 
 public class Menu {
@@ -13,8 +14,9 @@ public class Menu {
 	private final static String MESSAGGIO_PRINCIPALE = "INSERIRE IL NUMERO DELLA FUNZIONALITA' \n"
 			+ "[0] termina programma \n"
 			+ "[1] inserisci dati paziente \n"
-			+ "[2] aggiorna dati paziente \n";
-	private int nFuncMax = 2;
+			+ "[2] aggiorna dati paziente \n"
+			+ "[3] aggiungi nuovo esame medico \n";
+	private int nFuncMax = 3;
 	
 	
 	
@@ -63,6 +65,12 @@ public class Menu {
 		case 2: {
 			AggiornaDati aggiorna = new AggiornaDati();
 			aggiorna.execute();
+ 
+		break; //rompi lo switch ed esci da esso
+		}
+		case 3: {
+			AggiungiEsame aggiungi = new AggiungiEsame();
+			aggiungi.execute();
  
 		break; //rompi lo switch ed esci da esso
 		}

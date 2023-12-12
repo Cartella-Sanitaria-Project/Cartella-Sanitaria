@@ -1,5 +1,9 @@
 package com.it.unibs.alessandrobellini.cartellasanitaria.session;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Esame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Paziente;
 
 /*
@@ -10,7 +14,7 @@ public class ApplicationSession {
 	
 	private static ApplicationSession istance;
 	private Paziente paziente;
-	
+	private Map<Long, Esame> esami;
 	
 	
 	//costruttore privato 
@@ -19,6 +23,7 @@ public class ApplicationSession {
 	private ApplicationSession() {
 		//nessuna altra classe può creare sessioni, solo questa
 		paziente = new Paziente();
+		esami = new HashMap<>();// tramite l'hash accede direttamente al dato senza ciclare tutti gli altri
 	}
 	public static ApplicationSession getIstance() {
 		if(istance == null)
@@ -30,6 +35,15 @@ public class ApplicationSession {
 	}
 	public void setPaziente(Paziente paziente) {
 		this.paziente = paziente;
+	}
+	public Map<Long , Esame> getEsami() {
+		return esami;
+	}
+	public void setEsami(Map<Long , Esame> esami) {
+		this.esami = esami;
+	}
+	public void addEsame(Long key, Esame esame) {
+		esami.put(key, esame);
 	}
 	
 	//i metodi static possono essere chiamati anche senza un'istanza creata
