@@ -8,6 +8,10 @@ import org.apache.commons.lang3.math.NumberUtils;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.AggiornaDati;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.AggiungiEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InizializzaDati;
+import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InserimentoMalattia;
+import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InserimentoPrestazione;
+import com.it.unibs.alessandrobellini.cartellasanitaria.logic.ModificaPrestazione;
+import com.it.unibs.alessandrobellini.cartellasanitaria.logic.VisualizzazioneSinteticaUtente;
 
 public class Menu {
 	
@@ -15,8 +19,15 @@ public class Menu {
 			+ "[0] termina programma \n"
 			+ "[1] inserisci dati paziente \n"
 			+ "[2] aggiorna dati paziente \n"
-			+ "[3] aggiungi nuovo esame medico \n";
-	private int nFuncMax = 3;
+			+ "[3] aggiungi nuovo esame medico \n"
+			+ "[4] aggiungi nuova prestazione medica \n"
+	        + "[5] aggiungi una nuova malattia \n"
+	        + "[6] modifica prestazione medica \n"
+	        + "[7] visualizza dati paziente \n";
+	        
+	
+			
+	private int nFuncMax = 7;
 	
 	
 	
@@ -71,6 +82,30 @@ public class Menu {
 		case 3: {
 			AggiungiEsame aggiungi = new AggiungiEsame();
 			aggiungi.execute();
+ 
+		break; //rompi lo switch ed esci da esso
+		}
+		case 4: {
+			InserimentoPrestazione inserisci = new InserimentoPrestazione();
+			inserisci.execute();
+ 
+		break; //rompi lo switch ed esci da esso
+		}
+		case 5: {
+			InserimentoMalattia inserisciMalattia = new InserimentoMalattia();
+			inserisciMalattia.execute();
+ 
+		break; //rompi lo switch ed esci da esso
+		}
+		case 6: {
+			ModificaPrestazione inserisciModifica = new ModificaPrestazione();
+			inserisciModifica.execute();
+ 
+		break; //rompi lo switch ed esci da esso
+		}
+		case 7: {
+			VisualizzazioneSinteticaUtente visualizzaDati = new VisualizzazioneSinteticaUtente();
+			visualizzaDati.execute();
  
 		break; //rompi lo switch ed esci da esso
 		}

@@ -17,7 +17,7 @@ public class GruppoSanguinio implements Serializable {
 	}
 	
 	public GruppoSanguinio(String fattoreRh, String gruppo) {
-		super();//chiama il costruttore della classe padre on questo caso direttamente object
+		super();//chiama il costruttore della classe padre in questo caso direttamente object
 		this.fattoreRh = fattoreRh;
 		this.gruppo = gruppo;
 	}

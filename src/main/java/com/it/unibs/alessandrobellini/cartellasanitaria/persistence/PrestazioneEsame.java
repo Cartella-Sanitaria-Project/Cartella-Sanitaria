@@ -9,9 +9,15 @@ public class PrestazioneEsame implements Serializable {
 	private long idPrestazione;
 	private String dataEsame;
 	private String luogoEsame;
-	private String malattia;
+	private long idMalattia;
 	private String esito; // per esami diagnostici sarà es. descrizione stringa  , per quelli periodici sarà un numero
-
+	
+	public PrestazioneEsame() {
+		idEsame = 0L;
+		idPrestazione = 0L;
+		idMalattia = 0L;
+	}
+	
 	public long getIdEsame() {
 		return idEsame;
 	}
@@ -36,11 +42,11 @@ public class PrestazioneEsame implements Serializable {
 	public void setLuogoEsame(String luogoEsame) {
 		this.luogoEsame = luogoEsame;
 	}
-	public String getMalattia() {
-		return malattia;
+	public long getIdMalattia() {
+		return idMalattia;
 	}
-	public void setMalattia(String malattia) {
-		this.malattia = malattia;
+	public void setIdMalattia(long idMalattia) {
+		this.idMalattia = idMalattia;
 	}
 	public String getEsito() {
 		return esito;

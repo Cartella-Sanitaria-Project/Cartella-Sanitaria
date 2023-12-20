@@ -17,7 +17,7 @@ public class AggiornaDati {
 	private final static int N_FUNC_MAX = 11;
 	
 	public void execute() {
-		ApplicationSession sessione = ApplicationSession.getIstance();
+		ApplicationSession sessione = ApplicationSession.getIstance();//restiamo nell'istanza creata (singleton) creata inizialmente in Application session
 		
 		Paziente paziente = sessione.getPaziente();
 		
@@ -74,7 +74,7 @@ public class AggiornaDati {
 		break; //rompi lo switch ed esci da esso
 		}
 		case 2: {
-			String  cognome = InputDati.leggiStringaNonVuota("Inserisci di nuovo cognome \n");
+			String  cognome = InputDati.leggiStringaNonVuota("Inserisci di nuovo il cognome \n");
 		    paziente.setCognome(cognome);
 			 
 		break;  

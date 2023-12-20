@@ -90,5 +90,79 @@ public class PazienteUtils {
 				
 		
 	}
+	
+	
+	public static boolean isDataValid(String dataInserita) {
+		//verfichiamo la bontà della data
+		if(dataInserita == null) {
+			System.out.println("la data è nulla");
+			return false;
+		}
+		if (dataInserita.length() != 10) {
+			System.out.println("la data di inzio malattia non è nel formato atteso : yyyy-MM-dd");
+			return false;	
+		}
+		if (NumberUtils.toInt(dataInserita.substring(0, 4), -1) < 0 ) { //se ciò che viene passato non è un numero si ritorna il valore di default
+			System.out.println("l'anno non è un numero");
+			return false;
+		}
+		if (NumberUtils.toInt(dataInserita.substring(5, 7), -1) < 0 ) { 
+			System.out.println("il mese non è un numero");
+			return false;
+		}
+		if (NumberUtils.toInt(dataInserita.substring(8, 10), -1) < 0 ) { 
+			System.out.println("il giorno non è un numero");
+			return false;
+			
+		}
+		return true;
+	}
+	
+	public static boolean isDataValidOnull(String dataInserita) {
+		//verfichiamo la bontà della data
+		if(dataInserita == null || dataInserita.equalsIgnoreCase("nessuna") || dataInserita.equals(" 0 ")) {
+			System.out.println("la malattia non è ancora terminata");
+			return true;
+		}
+		if (dataInserita.length() != 10) {
+			System.out.println("la data di fine malattia non è nel formato atteso : yyyy-MM-dd");
+			return false;	
+		}
+		if (NumberUtils.toInt(dataInserita.substring(0, 4), -1) < 0 ) { //se ciò che viene passato non è un numero si ritorna il valore di default
+			System.out.println("l'anno non è un numero");
+			return false;
+		}
+		if (NumberUtils.toInt(dataInserita.substring(5, 7), -1) < 0 ) { 
+			System.out.println("il mese non è un numero");
+			return false;
+		}
+		if (NumberUtils.toInt(dataInserita.substring(8, 10), -1) < 0 ) { 
+			System.out.println("il giorno non è un numero");
+			return false;
+			
+		}
+		return true;
+	}
+	
+	public static boolean isHoursValid(String orario) {
+		if(orario == null || orario.isEmpty() || orario.equals(" 0 ")) {
+			System.out.println("Orario nullo");
+			return false;
+		}
+		if (orario.length() != 5) {
+			System.out.println("Formato non corretto per l'input hh:mm");
+			return false;
+		}
+		if (NumberUtils.toInt(orario.substring(0, 2), -1) == -1) {
+			System.out.println("Il formato dell'ora non è corretto");
+			return false;
+		}
+		if (NumberUtils.toInt(orario.substring(3, 5), -1) == -1) {
+			System.out.println("Il formato dei minuti non è corretto");
+			return false;
+		}
+		return true;
+		
+	}
 
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Esame;
+import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Malattia;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Paziente;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame;
 
@@ -17,15 +18,21 @@ public class ApplicationSession {
 	private Paziente paziente;
 	private Map<Long, Esame> esami;
 	private Map <Long ,PrestazioneEsame> prestazioni;
+	private Map <Long , Malattia> malattie;
 	
-	
+	public Map<Long, Malattia> getMalattie() {
+		return malattie;
+	}
+	public void setMalattie(Map<Long, Malattia> malattie) {
+		this.malattie = malattie;
+	}
 	//costruttore privato 
 	//singola istanza static 
 	//metodi di accesso all'istanza pubblici e static
 	private ApplicationSession() {
 		//nessuna altra classe può creare sessioni, solo questa
 		paziente = new Paziente();
-		esami = new HashMap<>();// tramite l'hash accede direttamente al dato senza ciclare tutti gli altri
+		esami = new HashMap<>();// tramite l'hash accede direttamente al dato senza ciclare tutti gli altri, lo ragguiugne per indirizzo
 	}
 	public static ApplicationSession getIstance() {
 		if(istance == null)
