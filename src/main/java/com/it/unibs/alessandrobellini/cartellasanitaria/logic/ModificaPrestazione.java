@@ -1,4 +1,8 @@
 package com.it.unibs.alessandrobellini.cartellasanitaria.logic;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -9,30 +13,35 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Malattia;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
+import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InsertDateUtils;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.PazienteUtils;
 
 public class ModificaPrestazione {
 	public void execute() {
 		boolean val = true;
+		ApplicationSession sessione = ApplicationSession.getIstance();
+		System.out.println("modifica della prestazione medica \n"
+				+ "inserisci 0 o premere invio per tornare al menù principale "
+				+ "scrivere un qualsiasi carattere (diverso da 0) per iniziare la modifica");
+		String primoInput = InputDati.leggiStringaNonVuota("conferma : ");
+		if(primoInput != null && primoInput.equals("0")) {
+			return;
+		}
+		CercaEsame cercaEsame = new CercaEsame();
+		Long id = cercaEsame.ricercaPrestazione();
+		if(id == null) {
+			System.out.println("Ricerca della prestazione annullata ");
+			return;
+		}
 		while(val) {
-				ApplicationSession sessione = ApplicationSession.getIstance();
-				System.out.println("modifica della prestazione medica \n"
-						+ "inserisci 0 o premere invio per tornare al menù principale "
-						+ "scrivere un qualsiasi carattere (diverso da 0) per iniziare la modifica");
-				String primoInput = InputDati.leggiStringaNonVuota("conferma : ");
-				if(primoInput != null && primoInput.equals("0")) {
-					return;
-				}
-				//private int N_FUNC_MAX = 4;
-				CercaEsame idPrestazione = new CercaEsame();
-				long id = idPrestazione.ricercaPrestazione();
-				PrestazioneEsame iPrestazione = sessione.getPrestazioni().get(id);
-				long tipoPrest = iPrestazione.getIdPrestazione();
-				System.out.println("selezionare la voce da modificare : \n "
-						+ "[1] data dell'esame : \n" + iPrestazione.getDataEsame()    
-						+ "[2] luogo dell'esame : \n" + iPrestazione.getLuogoEsame() 
-						+ "[3] malattia : \n" + iPrestazione.getIdMalattia()
-						+ "[4] esito : \n" + iPrestazione.getEsito());
+				PrestazioneEsame prestazioneObj = sessione.getPrestazioni().get(id);
+				long idPrestazione = prestazioneObj.getIdPrestazione();
+				System.out.println("selezionare la voce da modificare : "
+						+ "\n[0] annulla la modifica e torna al menù principale :"
+						+ "\n[1] data dell'esame : \n" + prestazioneObj.getDataEsame()    
+						+ "\n[2] luogo dell'esame : \n" + prestazioneObj.getLuogoEsame() 
+						+ "\n[3] malattia : \n" + prestazioneObj.getIdMalattia()
+						+ "\n[4] esito : \n" + prestazioneObj.getEsito());
 				
 				Scanner scanner = new Scanner (System.in);
 				String input = scanner.nextLine();
@@ -51,8 +60,8 @@ public class ModificaPrestazione {
 					val = false;
 				} else {
 					Map <Long , PrestazioneEsame> prestazioni = sessione.getPrestazioni();
-					iPrestazione = manageInput(inputNum,iPrestazione);
-					prestazioni.put(tipoPrest, iPrestazione);
+					prestazioneObj = manageInput(inputNum,prestazioneObj);
+					prestazioni.put(idPrestazione, prestazioneObj);
 					sessione.setPrestazioni(prestazioni);
 					System.out.println(" il dato è stato aggiornato, puoi aggiornare altri dati");
 						}
@@ -64,12 +73,12 @@ public class ModificaPrestazione {
 		public PrestazioneEsame manageInput(int inputNum , PrestazioneEsame iPrestazione) {
 			switch (inputNum) {
 			case 1: {
-				String dataEsame = InputDati.leggiStringaNonVuota("inserire la nuova data ");
-				while (!PazienteUtils.isDataValid(dataEsame)) {
-					dataEsame = InputDati.leggiStringaNonVuota("reinserire la data ");
-					iPrestazione.setDataEsame(dataEsame);
-					}
-					break; //rompi lo switch ed esci da esso
+				Date dataCompleta = InsertDateUtils.richiediData();
+				String dataFormattata = InsertDateUtils.printDateStandard(dataCompleta);
+				
+				iPrestazione.setDataEsame(dataFormattata);
+				
+				break; //rompi lo switch ed esci da esso
 			}
 			case 2: {
 				String luogoEsame = InputDati.leggiStringaNonVuota("inserire il luogo dell'esame ");
@@ -77,13 +86,10 @@ public class ModificaPrestazione {
 				break;  
 			}
 			case 3: {
-				Malattia malattiaNuova = new Malattia();
-				InserimentoMalattia modificaDati = new InserimentoMalattia();
-				modificaDati.execute();
-				//iPrestazione.setMalattia(modificaDati.);
-				
-				
-				//Malattia malattia = InputDati.leggiStringaNonVuota("inserire la nuova ");
+				Long idNuovaMalattia = new CercaEsame().ricercaMalattia();
+				if(idNuovaMalattia != null) {
+					iPrestazione.setIdMalattia(idNuovaMalattia);
+				}
 				 
 			break; 
 			}

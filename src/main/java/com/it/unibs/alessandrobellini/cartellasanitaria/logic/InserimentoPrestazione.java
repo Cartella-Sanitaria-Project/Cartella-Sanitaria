@@ -15,6 +15,7 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Paziente;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
+import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InsertDateUtils;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.PazienteUtils;
 
 public class InserimentoPrestazione {
@@ -42,45 +43,9 @@ public class InserimentoPrestazione {
 			String tipoEsame = esameSelezionato.getTipologia();
 			PrestazioneEsame prestazione = new PrestazioneEsame();
 			prestazione.setIdEsame(id);
-			boolean dataCorretta= false;
-			Calendar dataCompleta = Calendar.getInstance();
-			while (!dataCorretta) {
-					String dataGiorno = InputDati.leggiStringaNonVuota("inserisci il giorno dell'esame in formato yyyy-MM-dd : ");
-					dataCorretta = PazienteUtils.isDataValid(dataGiorno);
-					if(!dataCorretta) System.out.println("la data inserita non è corretta");
-					else {
-						DateFormat dFday = new SimpleDateFormat("yyyy-MM-dd");
-						try {
-							Date date = dFday.parse(dataGiorno);
-							dataCompleta.setTime(date);
-						} catch (ParseException e) {
-							System.out.println("Errore di parsing della data (giorno)");
-							return;
-						}
-						
-					}
-			}
-			dataCorretta = false;
-			while (!dataCorretta) {
-				String dataOra = InputDati.leggiStringaNonVuota("inserisci l'orario dell'esame in formato hh:mm : ");
-				dataCorretta = PazienteUtils.isHoursValid(dataOra);
-				if(!dataCorretta) System.out.println("la data inserita non è corretta");
-				else {
-					DateFormat dFday = new SimpleDateFormat("HH:mm");
-					try {
-						Date date = dFday.parse(dataOra);
-						Calendar cal = Calendar.getInstance();
-						cal.setTime(date);
-						dataCompleta.set(Calendar.HOUR_OF_DAY, cal.get(Calendar.HOUR_OF_DAY));
-						dataCompleta.set(Calendar.MINUTE, cal.get(Calendar.MINUTE));
-					} catch (ParseException e) {
-						System.out.println("Errore di parsing della data (orario)");
-						return;
-					}
-				}
-			}
-			DateFormat dF = new SimpleDateFormat("yyyy/MM/dd'T'HH:mm:ssZ");
-			String dataFormattata = dF.format(dataCompleta.getTime());
+			
+			Date dataCompleta = InsertDateUtils.richiediData();
+			String dataFormattata = InsertDateUtils.printDateStandard(dataCompleta);
 			prestazione.setDataEsame(dataFormattata);
 			
 			String luogo = InputDati.leggiStringaNonVuota("Inserisci il luogo della prestazione");

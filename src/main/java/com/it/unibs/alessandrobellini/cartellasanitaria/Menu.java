@@ -10,6 +10,7 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.logic.AggiungiEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InizializzaDati;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InserimentoMalattia;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InserimentoPrestazione;
+import com.it.unibs.alessandrobellini.cartellasanitaria.logic.ModificaMalattia;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.ModificaPrestazione;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.VisualizzazioneSinteticaUtente;
 
@@ -23,7 +24,8 @@ public class Menu {
 			+ "[4] aggiungi nuova prestazione medica \n"
 	        + "[5] aggiungi una nuova malattia \n"
 	        + "[6] modifica prestazione medica \n"
-	        + "[7] visualizza dati paziente \n";
+	        + "[7] modifica malattia \n"
+	        + "[8] visualizza dati paziente \n";
 	        
 	
 			
@@ -104,6 +106,12 @@ public class Menu {
 		break; //rompi lo switch ed esci da esso
 		}
 		case 7: {
+			ModificaMalattia modificaMalattia = new ModificaMalattia();
+			modificaMalattia.execute();
+ 
+		break; //rompi lo switch ed esci da esso
+		}
+		case 8: {
 			VisualizzazioneSinteticaUtente visualizzaDati = new VisualizzazioneSinteticaUtente();
 			visualizzaDati.execute();
  

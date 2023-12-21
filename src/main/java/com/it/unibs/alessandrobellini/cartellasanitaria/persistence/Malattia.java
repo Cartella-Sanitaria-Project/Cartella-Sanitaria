@@ -76,7 +76,7 @@ public class Malattia implements Serializable {
 	public void setElencoEsami(List<String> elencoEsami) {
 		this.elencoEsami = elencoEsami;
 	}
-	public void addEsami(String elencoEsami) {
+	public void addEsame(String elencoEsami) {
 		if(this.elencoEsami == null)
 			this.elencoEsami = new ArrayList<>();// lista di array dinamica 
 		this.elencoEsami.add(elencoEsami);//aggiungi in coda 

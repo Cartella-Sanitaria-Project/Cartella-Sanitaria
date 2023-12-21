@@ -26,6 +26,9 @@ public class ApplicationSession {
 	public void setMalattie(Map<Long, Malattia> malattie) {
 		this.malattie = malattie;
 	}
+	public void addMalattia(Long idMalattia, Malattia malattia) {
+		this.malattie.put(idMalattia, malattia);
+	}
 	//costruttore privato 
 	//singola istanza static 
 	//metodi di accesso all'istanza pubblici e static
@@ -33,6 +36,8 @@ public class ApplicationSession {
 		//nessuna altra classe può creare sessioni, solo questa
 		paziente = new Paziente();
 		esami = new HashMap<>();// tramite l'hash accede direttamente al dato senza ciclare tutti gli altri, lo ragguiugne per indirizzo
+		prestazioni = new HashMap<>();
+		malattie = new HashMap<>();
 	}
 	public static ApplicationSession getIstance() {
 		if(istance == null)
