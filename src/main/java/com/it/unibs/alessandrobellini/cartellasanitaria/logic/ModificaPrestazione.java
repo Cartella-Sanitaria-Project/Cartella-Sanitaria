@@ -1,7 +1,4 @@
 package com.it.unibs.alessandrobellini.cartellasanitaria.logic;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
@@ -9,12 +6,10 @@ import java.util.Scanner;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Malattia;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InsertDateUtils;
-import com.it.unibs.alessandrobellini.cartellasanitaria.utils.PazienteUtils;
 
 public class ModificaPrestazione {
 	public void execute() {
@@ -36,12 +31,14 @@ public class ModificaPrestazione {
 		while(val) {
 				PrestazioneEsame prestazioneObj = sessione.getPrestazioni().get(id);
 				long idPrestazione = prestazioneObj.getIdPrestazione();
+				System.out.println();
 				System.out.println("selezionare la voce da modificare : "
 						+ "\n[0] annulla la modifica e torna al menù principale :"
 						+ "\n[1] data dell'esame : \n" + prestazioneObj.getDataEsame()    
 						+ "\n[2] luogo dell'esame : \n" + prestazioneObj.getLuogoEsame() 
 						+ "\n[3] malattia : \n" + prestazioneObj.getIdMalattia()
 						+ "\n[4] esito : \n" + prestazioneObj.getEsito());
+				System.out.println();
 				
 				Scanner scanner = new Scanner (System.in);
 				String input = scanner.nextLine();

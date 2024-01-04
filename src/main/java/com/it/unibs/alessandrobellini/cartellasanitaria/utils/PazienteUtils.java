@@ -120,7 +120,8 @@ public class PazienteUtils {
 	
 	public static boolean isDataValidOnull(String dataInserita) {
 		//verfichiamo la bontà della data
-		if(dataInserita == null || dataInserita.equalsIgnoreCase("nessuna") || dataInserita.equals(" 0 ")) {
+		if(dataInserita == null || dataInserita.equalsIgnoreCase("nessuna") || dataInserita.trim().equals("0")
+				|| dataInserita.trim().equals("")) {
 			System.out.println("la malattia non è ancora terminata");
 			return true;
 		}

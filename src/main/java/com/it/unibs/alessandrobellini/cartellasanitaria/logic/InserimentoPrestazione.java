@@ -1,22 +1,14 @@
 package com.it.unibs.alessandrobellini.cartellasanitaria.logic;
 import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Esame;
-import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Paziente;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InsertDateUtils;
-import com.it.unibs.alessandrobellini.cartellasanitaria.utils.PazienteUtils;
 
 public class InserimentoPrestazione {
 	/*
@@ -38,7 +30,10 @@ public class InserimentoPrestazione {
 				return;
 			
 			CercaEsame idEsameCercato = new CercaEsame();
-			long id = idEsameCercato.ricercaTipologia();
+			Long id = idEsameCercato.ricercaTipologia();
+			if (id == 0L || id == null) {
+				return;
+			}
 			Esame esameSelezionato = sessione.getEsami().get(id);
 			String tipoEsame = esameSelezionato.getTipologia();
 			PrestazioneEsame prestazione = new PrestazioneEsame();
@@ -48,13 +43,13 @@ public class InserimentoPrestazione {
 			String dataFormattata = InsertDateUtils.printDateStandard(dataCompleta);
 			prestazione.setDataEsame(dataFormattata);
 			
-			String luogo = InputDati.leggiStringaNonVuota("Inserisci il luogo della prestazione");
+			String luogo = InputDati.leggiStringaNonVuota("Inserisci il luogo della prestazione\n");
 			prestazione.setLuogoEsame(luogo);
 			
 			boolean rispostaCorretta = false;
 			Long idMalattia = null;
 			while (!rispostaCorretta) {
-				String risposta = InputDati.leggiStringaNonVuota("La prestazione è legata a una malattia? Y/N");
+				String risposta = InputDati.leggiStringaNonVuota("La prestazione è legata a una malattia? Y/N ");
 				if (risposta.equalsIgnoreCase("Y")) {
 					idMalattia = new CercaEsame().ricercaMalattia();
 					rispostaCorretta = true;
@@ -71,7 +66,7 @@ public class InserimentoPrestazione {
 			}
 			
 			 if (tipoEsame.toUpperCase().equals("DIAGNOSTICO")) {
-				 String esito = InputDati.leggiStringa("Inserisci l'esito della prestazione (descrizione stringa ), puoi lasciare questo campo anche vuoto");
+				 String esito = InputDati.leggiStringa("Inserisci l'esito della prestazione (descrizione stringa ), puoi lasciare questo campo anche vuoto\n");
 				 if (esito != null && !esito.isEmpty()){
 					 prestazione.setEsito(esito);
 				 }
@@ -81,7 +76,7 @@ public class InserimentoPrestazione {
 			 if (tipoEsame.toUpperCase().equals("PERIODICO")) {
 				 
 				 do {
-					 String esito = InputDati.leggiStringa("Inserisci l'esito della prestazione (Valore numerico), puoi lasciare questo campo anche vuoto");
+					 String esito = InputDati.leggiStringa("Inserisci l'esito della prestazione (Valore numerico), puoi lasciare questo campo anche vuoto\n");
 					 if (esito != null && !esito.isEmpty()){
 						 try { 
 							 BigDecimal esitoNumerico = NumberUtils.createBigDecimal(esito);

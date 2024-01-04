@@ -33,12 +33,11 @@ public class InserimentoMalattia {
 		}
 		Date dataInizioDate = InsertDateUtils.castDateGiorno(dataInizio);
 		
-		String dataFine = InputDati.leggiStringaNonVuota(" inserisci la data dell'eventuale fine nel formato yyyy-MM-dd (digitare nessuna o 0 oppure premere invio per non inserire nessuna data di fine malattia  : \n");
+		String dataFine = InputDati.leggiStringa(" inserisci la data dell'eventuale fine nel formato yyyy-MM-dd (digitare nessuna o 0 oppure premere invio per non inserire nessuna data di fine malattia  : \n");
 		while (!PazienteUtils.isDataValidOnull(dataFine)) {
 			System.out.println("data inserita non valida");
-			dataFine = InputDati.leggiStringaNonVuota(" inserisci data di fine nel formato yyyy-MM-dd della malattia : \n");
+			dataFine = InputDati.leggiStringa(" inserisci data di fine nel formato yyyy-MM-dd della malattia : \n");
 		}
-		Date dataFineDate = InsertDateUtils.castDateGiorno(dataFine);
 		String sintomi = InputDati.leggiStringaNonVuota(" inserisci i sintomi : \n");
 		String diagnosi = InputDati.leggiStringaNonVuota(" inserisci la diagnosi : \n");
 		boolean daAggiungere = true;
@@ -59,8 +58,12 @@ public class InserimentoMalattia {
 		malattia.setNome(nome);
 		dataInizioDate = InsertDateUtils.setMidday(dataInizioDate);
 		malattia.setDataInizio(InsertDateUtils.printDateStandard(dataInizioDate));
-		dataFineDate = InsertDateUtils.setMidday(dataFineDate);
-		malattia.setDataFine(InsertDateUtils.printDateStandard(dataFineDate));
+		if (dataFine != null && !dataFine.isEmpty() && !dataFine.trim().contains("0")
+				&& !dataFine.contains("nessuna")) {
+			Date dataFineDate = InsertDateUtils.castDateGiorno(dataFine);
+			dataFineDate = InsertDateUtils.setMidday(dataFineDate);
+			malattia.setDataFine(InsertDateUtils.printDateStandard(dataFineDate));
+		}
 		malattia.setSintomi(sintomi);
 		malattia.setDiagnosi(diagnosi);
 		malattia.setTerapia(terapia);

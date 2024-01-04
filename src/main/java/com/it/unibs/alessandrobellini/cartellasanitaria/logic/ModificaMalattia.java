@@ -24,6 +24,7 @@ public class ModificaMalattia {
 		boolean inModifica = true;
 		while (inModifica) {
 			Malattia malattia = sessione.getMalattie().get(idMalattia);
+			System.out.println();
 			System.out.println("selezionare la voce da modificare : "
 					+ "\n[0] annulla la modifica e torna al menù principale :"
 					+ "\n[1] nome : \n" + malattia.getNome()    
@@ -33,6 +34,7 @@ public class ModificaMalattia {
 					+ "\n[5] diagnosi : \n" + malattia.getDiagnosi()
 					+ "\n[6] lista esami : \n" + malattia.getElencoEsami()
 					+ "\n[7] terapia : \n" + malattia.getTerapia());
+			System.out.println();
 			
 			@SuppressWarnings("resource")
 			Scanner scanner = new Scanner (System.in);
@@ -167,7 +169,7 @@ public class ModificaMalattia {
 				System.out.println("Modifica dell'esame annullata");
 			} else {
 				String nuovoEsame = InputDati.leggiStringaNonVuota("inserisci il nuovo nome dell'esame da aggiornare\n");
-				esami.set(i-1, nuovoEsame);
+				esami.set(inputNum-1, nuovoEsame);
 				malattia.setElencoEsami(esami);
 			}
 			

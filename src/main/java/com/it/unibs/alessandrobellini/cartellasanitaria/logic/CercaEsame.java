@@ -79,7 +79,7 @@ public class CercaEsame {
 		/*
 		 * faccio inserire all'utente l'indice numerico dell'esame di suo interesse
 		 */
-		sb.append("Seleziona l'esame dai risultati di ricerca, oppure digita 0 per annullare");
+		sb.append("Seleziona l'esame dai risultati di ricerca, oppure digita 0 per annullare\n");
 		int nRicerca = InputDati.leggiIntero(sb.toString());
 		
 		if((nRicerca < 0) || (nRicerca > i)) {
@@ -144,7 +144,7 @@ public class CercaEsame {
 		 * seleziona l'i-esimo indice per indicare quale scegliere dalla lista
 		 */
 		
-		sb.append("Seleziona la prestazione di esame dai risultati di ricerca, oppure digita 0 per annullare");
+		sb.append("Seleziona la prestazione di esame dai risultati di ricerca, oppure digita 0 per annullare\n");
 		int nRicerca = InputDati.leggiIntero(sb.toString());
 		
 		if((nRicerca < 0) || (nRicerca > i)) {
@@ -198,7 +198,7 @@ public class CercaEsame {
 				continue;
 			
 			if (nMalattia.toLowerCase().contains(malattia.getNome().toLowerCase()) ||
-					nMalattia.toLowerCase().equals(malattia.getNome().toLowerCase())){
+					malattia.getNome().toLowerCase().equals(nMalattia.toLowerCase())){
 				i++;
 				risultatiRicerca.put(i, malattia);
 			}
@@ -230,7 +230,7 @@ public class CercaEsame {
 		/*
 		 * faccio inserire all'utente l'indice numerico della malattia di mio interesse
 		 */
-		sb.append("Seleziona la malattia dai risultati di ricerca, oppure digita 0 per annullare");
+		sb.append("Seleziona la malattia dai risultati di ricerca, oppure digita 0 per annullare\n");
 		int nRicerca = InputDati.leggiIntero(sb.toString());
 		
 		if((nRicerca < 0) || (nRicerca > i)) {
