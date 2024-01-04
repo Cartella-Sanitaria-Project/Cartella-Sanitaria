@@ -137,10 +137,18 @@ public class Paziente implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Paziente [nome=" + nome + ", cognome=" + cognome + ", indirizzo=" + indirizzo + ", telefono=" + telefono
-				+ ", email=" + email + ", dataNascita=" + dataNascita + ", luogoNascita=" + luogoNascita + ", genere="
-				+ genere + ", codiceFiscale=" + codiceFiscale + ", codiceSanitario=" + codiceSanitario
-				+ ", gruppoSanguinio=" + gruppoSanguinio + "]";
+		return "Paziente: \n"
+				+ "nome=" + nome + "\n"
+				+ "cognome=" + cognome + "\n"
+				+ "indirizzo=" + indirizzo + "\n"
+				+ "telefono=" + telefono
+				+ "\nemail=" + email 
+				+ "\ndataNascita=" + dataNascita + "\n"
+				+ "luogoNascita=" + luogoNascita + "\n"
+				+ "genere=" + genere + "\n"
+				+ "codiceFiscale=" + codiceFiscale + "\n"
+				+ "codiceSanitario=" + codiceSanitario
+				+ "\ngruppoSanguinio=" + gruppoSanguinio;
 	}
 	
 	

@@ -19,9 +19,9 @@ public class VisualizzazioneUtils {
 			+ "[3] visualizzazione completa di una singola malattia, selezionata tra quelle presenti \n";
 	
 	
-	private int nFuncMax = 3;
+	private final static int nFuncMax = 3;
 	
-	public void menuApprofondimento() {
+	public static void menuApprofondimento() {
 		boolean onRunning = true;
 		Scanner scanner = null;
 		while (onRunning) {
@@ -48,7 +48,7 @@ public class VisualizzazioneUtils {
 		}
 		//scanner.close();
 		
-		private void manageInput(int input) {
+		private static void manageInput(int input) {
 			switch (input) {
 			case 1: {
 				datiAnagrafici();
@@ -85,7 +85,12 @@ public class VisualizzazioneUtils {
 			System.out.println(paziente.toString());
 			}
 		
-		public static void singoloEsame(Long idEsame) {
+		private static void singoloEsame(Long idEsame) {
+			if (idEsame == null || idEsame == 0L) {
+				System.out.println("Nessun esame trovato");
+				return;
+			}
+			
 			ApplicationSession sessione = ApplicationSession.getIstance();
 			Map<Long, Esame> esami = sessione.getEsami();
 			for (Map.Entry<Long, Esame> entry : esami.entrySet()) {
@@ -106,7 +111,12 @@ public class VisualizzazioneUtils {
 			}
 		}
 		
-		public static void singolaMalattia(Long idMalattia) {
+		private static void singolaMalattia(Long idMalattia) {
+			if (idMalattia == null || idMalattia == 0L) {
+				System.out.println("Nessuna malattia trovata");
+				return;
+			}
+			
 			ApplicationSession sessione = ApplicationSession.getIstance();
 			Map<Long, Malattia> malattie = sessione.getMalattie();
 			for (Map.Entry<Long, Malattia> entry : malattie.entrySet()) {

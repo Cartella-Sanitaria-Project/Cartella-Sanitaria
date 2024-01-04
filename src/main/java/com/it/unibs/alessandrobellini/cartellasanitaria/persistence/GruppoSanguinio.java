@@ -40,7 +40,9 @@ public class GruppoSanguinio implements Serializable {
 
 	@Override
 	public String toString() {
-		return "GruppoSanguinio [fattoreRh=" + fattoreRh + ", gruppo=" + gruppo + "]";
+		return "GruppoSanguinio:\n"
+				+ " - fattoreRh=" + fattoreRh + "\n"
+						+ " - gruppo=" + gruppo + "";
 	}
 	
 	

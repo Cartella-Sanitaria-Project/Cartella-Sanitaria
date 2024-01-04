@@ -6,6 +6,7 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Esame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Malattia;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
+import com.it.unibs.alessandrobellini.cartellasanitaria.utils.VisualizzazioneUtils;
 
 public class VisualizzazioneSinteticaUtente {
 	public void  execute() {
@@ -22,35 +23,34 @@ public class VisualizzazioneSinteticaUtente {
 		Map <Long , PrestazioneEsame> prestazioni = sessione.getPrestazioni();
 		Map <Long , Esame> esami = sessione.getEsami();
 		for (Map.Entry<Long, PrestazioneEsame> entry : prestazioni.entrySet()) {
-			Long key = entry.getKey();
 			PrestazioneEsame prest = entry.getValue();
-			prest.getIdEsame();
-			prest.getDataEsame();
-			for (Map.Entry<Long, Esame> esame : esami.entrySet()) {
-				Long key1 = esame.getKey();
-				Esame exam = esame.getValue();
-				if(prest.getIdEsame() == key1) {
-					st.append(" Nome dell'esame  : " + exam.getNome() + "\n");
-					st.append("Data : " + prest.getDataEsame() + "\n");
-					}
-				if(exam.getTipologia().equals("PERIODICO")) {
-					st.append("L' esito dell'esame è : ").append(prest.getEsito());
-					st.append('\n').append('\n');
-					}
-				}
+			Long idEsame = prest.getIdEsame();
+			Esame esame = esami.get(idEsame);
+			st.append("Nome esame: ").append(esame.getNome()).append('\n');
+			st.append("Data prestazione: ").append(prest.getDataEsame()).append('\n');
+			
+			if(esame.getTipologia().equals("PERIODICO")) {
+				st.append("L' esito dell'esame è : ").append(prest.getEsito()).append('\n');
 			}
+			st.append('\n');
+		}
+		
 		Map <Long , Malattia > malattie = sessione.getMalattie();
 		st.append('\n');
 		st.append("[Lista malattie]\n");
 		for (Map.Entry<Long ,Malattia> malattia : malattie.entrySet()) {
-			Long key = malattia.getKey();
 			Malattia value = malattia.getValue();
 			st.append(" Nome della malattia  : " + value.getNome() + "\n");
-			st.append("Data di inzio : " + value.getDataInizio().substring(0, 11) + "\n");
-			
+			st.append("Data di inizio : " + value.getDataInizio().substring(0, 10) + "\n");
+			if (value.getDataFine() != null && value.getDataFine().length() > 10) {
+				st.append("Data di fine : " + value.getDataFine().substring(0, 10) + "\n");
+			}
 		}
 		
 		
- System.out.println(st);
-}
+	System.out.println(st);
+	
+	VisualizzazioneUtils.menuApprofondimento();
+ 
+  }
 }

@@ -102,4 +102,20 @@ public class InsertDateUtils {
 		return dataFormattata;
 	}
 	
+	public static Date castDateStandard(String dataInput) {
+		if (!PazienteUtils.isDataStandardValid(dataInput)) {
+			// data non corretta con il formato atteso
+			return null;
+		}
+		DateFormat dFday = new SimpleDateFormat("yyyy/MM/dd'T'HH:mm:ssZ");
+		try {
+			Date date = dFday.parse(dataInput);
+			return date;
+		} catch (ParseException e) {
+			System.out.println("Errore di parsing della data (standard)");
+			return null;
+		}
+			
+	}
+	
 }

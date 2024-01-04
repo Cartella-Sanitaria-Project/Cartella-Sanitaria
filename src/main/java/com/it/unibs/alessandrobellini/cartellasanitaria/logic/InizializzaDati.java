@@ -55,6 +55,9 @@ public class InizializzaDati {
 		//abbiamo creato il nostor paziente ora lo salviamo in sessione
 		sessione.setPaziente(paziente);
 		
+		
+		SalvaCaricaDati.salvaDati();
+		
 	}
 	
 

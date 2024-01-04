@@ -99,7 +99,33 @@ public class PazienteUtils {
 			return false;
 		}
 		if (dataInserita.length() != 10) {
-			System.out.println("la data di inzio malattia non è nel formato atteso : yyyy-MM-dd");
+			System.out.println("la data non è nel formato atteso : yyyy-MM-dd");
+			return false;	
+		}
+		if (NumberUtils.toInt(dataInserita.substring(0, 4), -1) < 0 ) { //se ciò che viene passato non è un numero si ritorna il valore di default
+			System.out.println("l'anno non è un numero");
+			return false;
+		}
+		if (NumberUtils.toInt(dataInserita.substring(5, 7), -1) < 0 ) { 
+			System.out.println("il mese non è un numero");
+			return false;
+		}
+		if (NumberUtils.toInt(dataInserita.substring(8, 10), -1) < 0 ) { 
+			System.out.println("il giorno non è un numero");
+			return false;
+			
+		}
+		return true;
+	}
+	
+	public static boolean isDataStandardValid(String dataInserita) {
+		//verfichiamo la bontà della data
+		if(dataInserita == null) {
+			System.out.println("la data è nulla");
+			return false;
+		}
+		if (dataInserita.length() < 21) {
+			System.out.println("la data non è nel formato atteso : yyyy-MM-ddTHH:mm:ssZ");
 			return false;	
 		}
 		if (NumberUtils.toInt(dataInserita.substring(0, 4), -1) < 0 ) { //se ciò che viene passato non è un numero si ritorna il valore di default
