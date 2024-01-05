@@ -61,6 +61,7 @@ public class ModificaPrestazione {
 					prestazioni.put(idPrestazione, prestazioneObj);
 					sessione.setPrestazioni(prestazioni);
 					System.out.println(" il dato è stato aggiornato, puoi aggiornare altri dati");
+					SalvaCaricaDati.salvaDati();
 						}
 				}
 		}

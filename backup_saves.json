@@ -1,0 +1,197 @@
+{
+  "paziente": {
+    "codiceFiscale": "RSSMRA90A10A794N",
+    "codiceSanitario": "2f84114c0a2c4ba486bcfe26e84709e1",
+    "cognome": "Rossi",
+    "dataNascita": "1990-01-10",
+    "email": "mrossi@mail.it",
+    "genere": "Maschio",
+    "indirizzo": "Via Verdi, 1, Bergamo",
+    "luogoNascita": "Bergamo",
+    "nome": "Mario",
+    "gruppoSanguinio": {
+      "fattoreRH": "positivo",
+      "gruppo": "A"
+    },
+    "telefoni": [
+      "3334455678"
+    ]
+  },
+  "esami": [
+    {
+      "nome": "colesterolo-hdl",
+      "preparazione": "Digiuno alla mattina",
+      "tipologia": "PERIODICO",
+      "trattamentiPostEsame": "Nessuno",
+      "idEsame": 1704451735584,
+      "valoreNormalitaMax": 200,
+      "valoreNormalitaMin": 50,
+      "sogliaErroreInserimento": 200
+    },
+    {
+      "nome": "glicata",
+      "preparazione": "Digiuno di mattina",
+      "tipologia": "PERIODICO",
+      "trattamentiPostEsame": "Nessuno",
+      "idEsame": 1704451510735,
+      "valoreNormalitaMax": 42,
+      "valoreNormalitaMin": 20,
+      "sogliaErroreInserimento": 100
+    },
+    {
+      "nome": "colesterolo-ldl",
+      "preparazione": "Digiuno alla mattina",
+      "tipologia": "PERIODICO",
+      "trattamentiPostEsame": "Nessuno",
+      "idEsame": 1704451602564,
+      "valoreNormalitaMax": 100,
+      "valoreNormalitaMin": 0,
+      "sogliaErroreInserimento": 300
+    },
+    {
+      "nome": "glicemia",
+      "preparazione": "Digiuno alla mattina",
+      "tipologia": "PERIODICO",
+      "trattamentiPostEsame": "Nessuno",
+      "idEsame": 1704451457694,
+      "valoreNormalitaMax": 99,
+      "valoreNormalitaMin": 70,
+      "sogliaErroreInserimento": 100
+    },
+    {
+      "nome": "radiografia",
+      "preparazione": "non indossare oggetti metallici",
+      "tipologia": "DIAGNOSTICO",
+      "trattamentiPostEsame": "nessuno",
+      "idEsame": 1704452180099
+    },
+    {
+      "nome": "fundus oculi",
+      "preparazione": "nessuna",
+      "tipologia": "DIAGNOSTICO",
+      "trattamentiPostEsame": "non guidare per le tre ore successive",
+      "idEsame": 1704452381391
+    }
+  ],
+  "prestazioni": [
+    {
+      "idEsame": 1704451457694,
+      "idPrestazione": 1704452728096,
+      "dataEsame": "2014/01/10T08:30:00+0100",
+      "luogoEsame": "Bergamo",
+      "idMalattia": 1704451371681,
+      "esito": "101"
+    },
+    {
+      "idEsame": 1704451735584,
+      "idPrestazione": 1704454247208,
+      "dataEsame": "2024/01/16T07:30:00+0100",
+      "luogoEsame": "Bergamo",
+      "idMalattia": 1704451371681
+    },
+    {
+      "idEsame": 1704451735584,
+      "idPrestazione": 1704454372288,
+      "dataEsame": "2024/03/01T07:45:00+0100",
+      "luogoEsame": "Brescia",
+      "idMalattia": 1704451371681
+    },
+    {
+      "idEsame": 1704451457694,
+      "idPrestazione": 1704452672907,
+      "dataEsame": "2013/01/10T08:50:00+0100",
+      "luogoEsame": "Bergamo",
+      "idMalattia": 1704451371681,
+      "esito": "105"
+    },
+    {
+      "idEsame": 1704451457694,
+      "idPrestazione": 1704452882988,
+      "dataEsame": "2017/01/10T09:00:00+0100",
+      "luogoEsame": "Seriate",
+      "idMalattia": 1704451371681,
+      "esito": "107"
+    },
+    {
+      "idEsame": 1704451457694,
+      "idPrestazione": 1704452529972,
+      "dataEsame": "2011/01/10T09:30:00+0100",
+      "luogoEsame": "Alzano",
+      "idMalattia": 1704451371681,
+      "esito": "90"
+    },
+    {
+      "idEsame": 1704452381391,
+      "idPrestazione": 1704454031806,
+      "dataEsame": "2016/02/01T07:40:00+0100",
+      "luogoEsame": "Seriate",
+      "idMalattia": 1704451371681,
+      "esito": "Risultano piccoli segni di retinopatia diabetica"
+    },
+    {
+      "idEsame": 1704451735584,
+      "idPrestazione": 1704454323964,
+      "dataEsame": "2024/02/01T07:10:00+0100",
+      "luogoEsame": "Seriate",
+      "idMalattia": 1704451371681
+    },
+    {
+      "idEsame": 1704452381391,
+      "idPrestazione": 1704452987657,
+      "dataEsame": "2012/02/01T09:00:00+0100",
+      "luogoEsame": "Alzano",
+      "idMalattia": 0,
+      "esito": "Nessun problema rilevato"
+    },
+    {
+      "idEsame": 1704452180099,
+      "idPrestazione": 1704454105979,
+      "dataEsame": "2018/06/04T14:00:00+0200",
+      "luogoEsame": "Brescia",
+      "idMalattia": 0,
+      "esito": "piccola frattura della rotula"
+    },
+    {
+      "idEsame": 1704451457694,
+      "idPrestazione": 1704452622143,
+      "dataEsame": "2012/01/10T09:00:00+0100",
+      "luogoEsame": "Seriate",
+      "idMalattia": 1704451371681,
+      "esito": "85"
+    },
+    {
+      "idEsame": 1704451457694,
+      "idPrestazione": 1704452831323,
+      "dataEsame": "2016/01/10T08:00:00+0100",
+      "luogoEsame": "Alzano",
+      "idMalattia": 1704451371681,
+      "esito": "90"
+    },
+    {
+      "idEsame": 1704452381391,
+      "idPrestazione": 1704453943209,
+      "dataEsame": "2014/02/01T08:00:00+0100",
+      "luogoEsame": "Alzano",
+      "idMalattia": 1704451371681,
+      "esito": "Nessun problema rilevato"
+    },
+    {
+      "idEsame": 1704451457694,
+      "idPrestazione": 1704452775359,
+      "dataEsame": "2015/01/10T07:30:00+0100",
+      "luogoEsame": "Alzano",
+      "idMalattia": 1704451371681,
+      "esito": "80"
+    }
+  ],
+  "malattie": [
+    {
+      "idMalattia": 1704451371681,
+      "nome": "diabete",
+      "dataInizio": "2010/08/20T12:00:00+0200",
+      "sintomi": "Sangue denso e molta sete",
+      "diagnosi": "Elevato numero di zucchero nel sangue",
+      "terapia": "insulina"
+    }
+  ]
+}

@@ -90,7 +90,10 @@ public class VisualizzazioneEsitiEsamiPeriodici {
 			
 		}
 		
-		printListaPrestazioni(prestSelezionati);
+		if (prestSelezionati != null &&  prestSelezionati.size() > 0)
+			printListaPrestazioni(prestSelezionati);
+		else
+			System.out.println("Nessuna prestazione da visualizzare");
 		
 	}
 		
@@ -110,14 +113,23 @@ public class VisualizzazioneEsitiEsamiPeriodici {
 		ApplicationSession sessione = ApplicationSession.getIstance();
 		StringBuffer sb = new StringBuffer("Prestazioni Mediche ricercate:\n");
 		BigDecimal somma = BigDecimal.ZERO;
+		int dividendo = 0;
 		for (PrestazioneEsame prest : prestazioni) {
 			Esame esame = sessione.getEsami().get(prest.getIdEsame());
 			
 			BigDecimal normMax = esame.getValoreNormalitaMax(),
 					normMin =esame.getValoreNormalitaMin(),
-					esito = new BigDecimal(prest.getEsito());
-			boolean superamentoNorm = esito.compareTo(normMax) > 0 || esito.compareTo(normMin) < 0;
-			somma = somma.add(esito);
+					esito = null;
+			if (prest.getEsito() != null)
+				esito = new BigDecimal(prest.getEsito());
+			
+			boolean superamentoNorm = false;
+			if (esito != null) {
+				superamentoNorm = esito.compareTo(normMax) > 0 || esito.compareTo(normMin) < 0;
+				somma = somma.add(esito);
+				dividendo++;
+			}
+			
 			
 			sb.append("Nome esame: ").append(esame.getNome()).append('\n');
 			sb.append("Tipologia esame: ").append(esame.getTipologia()).append('\n');
@@ -129,11 +141,13 @@ public class VisualizzazioneEsitiEsamiPeriodici {
 			sb.append("Superamento valori normalità: ").append(superamentoNorm).append('\n');
 			
 		}
-		BigDecimal bd = new BigDecimal("" + prestazioni.size());
-		System.out.println("VALORE: ["+ bd + "] - " +prestazioni.size());
-		sb.append('\n').append("\nValore medio delle misurazioni: ")
-				.append(somma.divide(bd, 2, RoundingMode.CEILING)).append('\n');
-		sb.append("Numero di esami: ").append(prestazioni.size()).append('\n');
+		if (dividendo > 0) {
+			BigDecimal bd = new BigDecimal("" + dividendo);
+			sb.append('\n').append("\nValore medio delle misurazioni: ")
+					.append(somma.divide(bd, 2, RoundingMode.CEILING)).append('\n');
+		}
+		sb.append("Numero di esami totali: ").append(prestazioni.size()).append('\n');
+		sb.append("Numero di esami calcolati nella media: ").append(dividendo).append('\n');
 		System.out.println(sb.toString());
 		
 		

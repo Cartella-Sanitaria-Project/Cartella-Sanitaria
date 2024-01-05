@@ -58,6 +58,8 @@ public class AggiornaDati {
 				paziente = manageInput(inputNum, paziente);
 				sessione.setPaziente(paziente);
 				System.out.println(" il dato è stato aggiornato, puoi aggiornare altri dati");
+				//salvataggio struttura
+				SalvaCaricaDati.salvaDati();
 			}
 		
 		}

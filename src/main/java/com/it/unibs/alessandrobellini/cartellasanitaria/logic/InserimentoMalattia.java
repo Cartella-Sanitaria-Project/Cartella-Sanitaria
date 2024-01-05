@@ -71,6 +71,7 @@ public class InserimentoMalattia {
 		
 		
 		sessione.addMalattia(malattia.getIdMalattia(), malattia);
+		SalvaCaricaDati.salvaDati();
 		
 	}
 

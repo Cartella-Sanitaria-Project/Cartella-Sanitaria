@@ -58,6 +58,7 @@ public class ModificaMalattia {
 				malattie.put(malattia.getIdMalattia(), malattia);
 				sessione.setMalattie(malattie);
 				System.out.println(" il dato è stato aggiornato, puoi aggiornare altri dati");
+				SalvaCaricaDati.salvaDati();
 					}
 			}
 		

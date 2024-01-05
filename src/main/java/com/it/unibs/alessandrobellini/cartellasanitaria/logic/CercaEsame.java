@@ -198,7 +198,7 @@ public class CercaEsame {
 				continue;
 			
 			if (nMalattia.toLowerCase().contains(malattia.getNome().toLowerCase()) ||
-					malattia.getNome().toLowerCase().equals(nMalattia.toLowerCase())){
+					malattia.getNome().toLowerCase().contains(nMalattia.toLowerCase())){
 				i++;
 				risultatiRicerca.put(i, malattia);
 			}

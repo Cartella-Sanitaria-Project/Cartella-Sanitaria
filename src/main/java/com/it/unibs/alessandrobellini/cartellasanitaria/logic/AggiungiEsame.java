@@ -49,6 +49,7 @@ public class AggiungiEsame {
 		
 		ApplicationSession sessione = ApplicationSession.getIstance(); // prendiamo l'istanza della sessione 
 		sessione.addEsame(esame.getIdEsame(), esame);
+		SalvaCaricaDati.salvaDati();
 		
 		
 		

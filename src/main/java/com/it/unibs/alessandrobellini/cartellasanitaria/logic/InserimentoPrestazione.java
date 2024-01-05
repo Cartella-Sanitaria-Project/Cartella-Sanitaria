@@ -109,6 +109,7 @@ public class InserimentoPrestazione {
 			 prestazione.setIdPrestazione(idPrestazione);
 			
 			 sessione.addPrestazione(idPrestazione, prestazione);
+			 SalvaCaricaDati.salvaDati();
 		
 		}
 	}

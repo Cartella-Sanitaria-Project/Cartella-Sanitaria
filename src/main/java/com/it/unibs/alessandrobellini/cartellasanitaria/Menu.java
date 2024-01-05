@@ -12,6 +12,7 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InserimentoMalatti
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InserimentoPrestazione;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.ModificaMalattia;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.ModificaPrestazione;
+import com.it.unibs.alessandrobellini.cartellasanitaria.logic.VisualizzazioneEsameDiagnostico;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.VisualizzazioneSinteticaUtente;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.VisualizzazioneEsitiEsamiPeriodici;
 
@@ -27,11 +28,12 @@ public class Menu {
 	        + "[6] modifica prestazione medica \n"
 	        + "[7] modifica malattia \n"
 	        + "[8] visualizza dati paziente \n"
-	        + "[9] visulizzazione degli esiti misurabili degli esami periodici \n";
+	        + "[9] visulizzazione degli esiti misurabili degli esami periodici \n"
+	        + "[10] visualizzazione degli esami diagnostici";
 	        
 	
 			
-	private int nFuncMax = 9;
+	private int nFuncMax = 10;
 	
 	
 	
@@ -124,6 +126,11 @@ public class Menu {
 			visualizzaEsiti.execute();
  
 		break; //rompi lo switch ed esci da esso
+		}
+		case 10: {
+			VisualizzazioneEsameDiagnostico visEsame = new VisualizzazioneEsameDiagnostico();
+			visEsame.execute();
+		break;
 		}
 		
 		default:
