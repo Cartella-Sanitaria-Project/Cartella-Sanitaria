@@ -9,7 +9,10 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InsertDateUtils;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.PazienteUtils;
 
-public class InserimentoMalattia {
+/**
+ * Inserisce una nuova malattia legata al paziente
+ */
+public class InserimentoMalattia implements FunzionalitaInterface {
 	
 	public void execute() {
 		ApplicationSession sessione = ApplicationSession.getIstance();
@@ -56,6 +59,7 @@ public class InserimentoMalattia {
 		
 		malattia.setIdMalattia(System.currentTimeMillis());
 		malattia.setNome(nome);
+		//come orario delle malattie ho scelto di porre come default le 12:00
 		dataInizioDate = InsertDateUtils.setMidday(dataInizioDate);
 		malattia.setDataInizio(InsertDateUtils.printDateStandard(dataInizioDate));
 		if (dataFine != null && !dataFine.isEmpty() && !dataFine.trim().contains("0")

@@ -4,8 +4,17 @@ import java.util.UUID;
 
 import org.apache.commons.lang3.math.NumberUtils;
 
+/**
+ * Classe con metodi di utilità del paziente
+ */
 public class PazienteUtils {
 	
+	/**
+	 * Genera un ID univoco in formato stringa, il codice generato sarà univoco (UUID)
+	 * e non verrà generato da nessun'altra macchina lo stesso codice.
+	 * 
+	 * @return il codice sanitario univoco
+	 */
 	public static String genCodiceSanitario() {
 		String csId = UUID.randomUUID().toString(); /* generazione univoca di un identificativo, (no duplicati)
 		* salviamo ciò che 
@@ -17,6 +26,13 @@ public class PazienteUtils {
 		
 	}
 	
+	/**
+	 * verifica che la stringa inserita rispetti il formato richiesto,
+	 * verificando che la data sia stata inserita correttamente senza caratteri estranei (solo numeri)
+	 * si utilizza il metodo .subString(...) 
+	 * @param dataDiNascita
+	 * @return il booleano di risultato <code>true</code> se la stringa è valida
+	 */
 	public static boolean isDataNascitaValid(String dataDiNascita) {
 		//verfichiamo la bontà della data
 		if(dataDiNascita == null) {
@@ -80,10 +96,7 @@ public class PazienteUtils {
 			if (Character.isLetter(l) != true )
 				condizione = false;
 			return condizione;
-			/*if (conta_eccezioni != 0)
-				return false;
-			else return true;
-			//altrimenti utilizzare il confronto dei codici ASCII*/
+			//altrimenti potevo utilizzare il confronto dei codici ASCII*/
 		}
 		else return false;
 	
@@ -93,7 +106,7 @@ public class PazienteUtils {
 	
 	
 	public static boolean isDataValid(String dataInserita) {
-		//verfichiamo la bontà della data
+		//verfico la bontà della data
 		if(dataInserita == null) {
 			System.out.println("la data è nulla");
 			return false;
@@ -119,7 +132,7 @@ public class PazienteUtils {
 	}
 	
 	public static boolean isDataStandardValid(String dataInserita) {
-		//verfichiamo la bontà della data
+		//verfico la bontà della data con ore minuti e secondi
 		if(dataInserita == null) {
 			System.out.println("la data è nulla");
 			return false;
@@ -145,7 +158,7 @@ public class PazienteUtils {
 	}
 	
 	public static boolean isDataValidOnull(String dataInserita) {
-		//verfichiamo la bontà della data
+		//verfichiamo la bontà della data che può anche essere nulla
 		if(dataInserita == null || dataInserita.equalsIgnoreCase("nessuna") || dataInserita.trim().equals("0")
 				|| dataInserita.trim().equals("")) {
 			System.out.println("la malattia non è ancora terminata");
@@ -171,6 +184,12 @@ public class PazienteUtils {
 		return true;
 	}
 	
+	/**
+	 * Verifica che la stringa dell'orario sia nel formato atteso HH:mm
+	 * 
+	 * @param orario
+	 * @return Il booleano indicante se l'orario è corretto
+	 */
 	public static boolean isHoursValid(String orario) {
 		if(orario == null || orario.isEmpty() || orario.equals(" 0 ")) {
 			System.out.println("Orario nullo");

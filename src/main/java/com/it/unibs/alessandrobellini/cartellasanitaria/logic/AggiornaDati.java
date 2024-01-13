@@ -11,7 +11,12 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Paziente;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
 
-public class AggiornaDati {
+/**
+ * Aggiorna puntualmente un dato dell'anagrafica del paziente.<br>
+ * Utilizzare questa funzionalità in quanto non è possibile re-inizializare 
+ * i dati anagrafici.
+ */
+public class AggiornaDati implements FunzionalitaInterface {
 	
 	private final static String MESSAGGIO_AGGIORNAMENTO = "Digitare 0 per non aggiornare i dati precedentemente inseriti\n OPPURE \ndigitare l'indice numerico associato ad ogni singolo dato da aggiornare\n";
 	private final static int N_FUNC_MAX = 11;
@@ -67,6 +72,12 @@ public class AggiornaDati {
 		
 	}
 	
+	/**
+	 * gestisce l'input dell'utente e modifica puntualmente un dato del paziente
+	 * @param input - selettore dell'attributo
+	 * @param paziente - la truttura paziente da aggiornare
+	 * @return La truttura paziente aggiornata
+	 */
 	private Paziente manageInput(int input, Paziente paziente) {
 		switch (input) {
 		case 1: {
@@ -147,7 +158,12 @@ public class AggiornaDati {
 	}
 	
 	
-	
+	/**
+	 * Gestisce le informazioni dei telefoni legati al paziente
+	 * 
+	 * @param paziente - Struttura paziente da aggiornare
+	 * @return Struttura paziente aggiornata
+	 */
 	private Paziente manageTelefono(Paziente paziente) {
 		String primoInput = InputDati.leggiStringaNonVuota("Inserisci 1 per aggiungere un nuovo numero "
 				+ "o un altro carattere per aggiornarne uno esistente\n");

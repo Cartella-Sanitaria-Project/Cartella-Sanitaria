@@ -9,7 +9,19 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneE
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
 
+/**
+ * Classe di ricerca delle strutture dati in sessione
+ */
 public class CercaEsame {
+	
+	
+	/**
+	 * Ricerca dell'esame medico specifico.<br>
+	 * Usare questa funzione per ricercare la classe Esame, richiederà all'utente 
+	 * il nome dell'esame medico.
+	 * @return Ritorna l'id della classe Esame selezionata, <code>null</code> se la 
+	 * ricerca è stata interrotta
+	 */
 	public Long ricercaTipologia() {
 	    /*
 	     * faccio inserire all'utente l'esame da ricercare
@@ -97,7 +109,13 @@ public class CercaEsame {
 	}
 	
 	
-	
+	/**
+	 * Ricerca della prestazione medica collegata ad un esame eseguito o da eseguire dal 
+	 * paziente. Richiede all'utente il nome dell'esame e chiederà la selezione della prestazione
+	 * visualizzando la data.
+	 * @return Ritorna l'ID della prestazione medica cercata, <code>null</code> se la 
+	 * ricerca è stata interrotta
+	 */
 	public Long ricercaPrestazione() {
 		
 		Long idEsameCercato = ricercaTipologia(); 
@@ -162,6 +180,12 @@ public class CercaEsame {
 		
 	}
 	
+	/**
+	 * Ricerca della malattia, richiede all'utente il nome di questa.
+	 * 
+	 * @return Ritorna l'ID della malattia selezionata, <code>null</code> se la 
+	 * ricerca è stata interrotta
+	 */
 	public Long ricercaMalattia() {
 	    /*
 	     * faccio inserire all'utente l'esame da ricercare

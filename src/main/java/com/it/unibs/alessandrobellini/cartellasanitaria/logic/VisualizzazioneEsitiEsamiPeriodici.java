@@ -1,7 +1,6 @@
-package com.it.unibs.alessandrobellini.cartellasanitaria.utils;
+package com.it.unibs.alessandrobellini.cartellasanitaria.logic;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,13 +11,20 @@ import java.util.Scanner;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import com.it.unibs.alessandrobellini.cartellasanitaria.logic.CercaEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Esame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
+import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InsertDateUtils;
 
-public class VisualizzazioneEsitiEsamiPeriodici {
-	public static void execute() {
+/**
+ * Classe di visualizzazione degli esami periodici e dei loro esiti.<br>
+ * Vengono visualizzati qui gli esiti, la media e il numero delle prestazioni
+ * prese in considerazione.<br>
+ * è possibile effettuare la ricerca tramite filtro di date.
+ */
+public class VisualizzazioneEsitiEsamiPeriodici implements FunzionalitaInterface {
+	
+	public void execute() {
 		ApplicationSession sessione = ApplicationSession.getIstance();
 		CercaEsame esameDaStampare = new CercaEsame();
 		Long idEsame = esameDaStampare.ricercaTipologia();
@@ -97,7 +103,11 @@ public class VisualizzazioneEsitiEsamiPeriodici {
 		
 	}
 		
-		
+	
+	/**
+	 * Richiede all'utente le 2 date di filtro da applicare
+	 * @return Un array di 2 elementi con data inizio e data fine per filtro
+	 */
 	private static Date[] richiediDatePerFiltro() {
 		Date[] dateDaFiltrare = new Date[2];
 		System.out.println("Inserisci la data di inizio filtro");
@@ -109,6 +119,11 @@ public class VisualizzazioneEsitiEsamiPeriodici {
         return dateDaFiltrare;
 	}
 	
+	/**
+	 * Stampa le informazioni delle prestazioni selezionate
+	 * 
+	 * @param prestazioni - le prestazioni da stampare
+	 */
 	private static void printListaPrestazioni(List<PrestazioneEsame> prestazioni) {
 		ApplicationSession sessione = ApplicationSession.getIstance();
 		StringBuffer sb = new StringBuffer("Prestazioni Mediche ricercate:\n");

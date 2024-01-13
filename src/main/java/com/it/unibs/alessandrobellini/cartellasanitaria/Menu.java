@@ -7,15 +7,20 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.AggiornaDati;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.AggiungiEsame;
+import com.it.unibs.alessandrobellini.cartellasanitaria.logic.FunzionalitaInterface;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InizializzaDati;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InserimentoMalattia;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.InserimentoPrestazione;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.ModificaMalattia;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.ModificaPrestazione;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.VisualizzazioneEsameDiagnostico;
+import com.it.unibs.alessandrobellini.cartellasanitaria.logic.VisualizzazioneEsitiEsamiPeriodici;
 import com.it.unibs.alessandrobellini.cartellasanitaria.logic.VisualizzazioneSinteticaUtente;
-import com.it.unibs.alessandrobellini.cartellasanitaria.utils.VisualizzazioneEsitiEsamiPeriodici;
 
+/**
+ * Menu principale e contestualle di tutte le funzioni disponibili
+ * all'utente
+ */
 public class Menu {
 	
 	private final static String MESSAGGIO_PRINCIPALE = "INSERIRE IL NUMERO DELLA FUNZIONALITA' \n"
@@ -40,7 +45,12 @@ public class Menu {
 	
 	
 	
-	
+	/**
+	 * 
+	 * Richiede un numero all'utente per selezionare la funzionalità,
+	 * controlla l'input e esegue una classe di logica
+	 * 
+	 */
 	public void menuPrincipale() {
 		boolean onRunning = true;
 		Scanner scanner = null;
@@ -71,64 +81,70 @@ public class Menu {
 		
 	}
 	
+	/**
+	 * 
+	 * Gestisce in base all'input l'avvio di una funzionalità
+	 * 
+	 * @param input - numero della funzionalità (selettore)
+	 */
 	private void manageInput(int input) {
 		switch (input) {
 		case 1: {
-			InizializzaDati init = new InizializzaDati();
+			FunzionalitaInterface init = new InizializzaDati();
 			init.execute();
  
 		break; //rompi lo switch ed esci da esso
 		}
 		case 2: {
-			AggiornaDati aggiorna = new AggiornaDati();
+			FunzionalitaInterface aggiorna = new AggiornaDati();
 			aggiorna.execute();
  
 		break; //rompi lo switch ed esci da esso
 		}
 		case 3: {
-			AggiungiEsame aggiungi = new AggiungiEsame();
+			FunzionalitaInterface aggiungi = new AggiungiEsame();
 			aggiungi.execute();
  
 		break; //rompi lo switch ed esci da esso
 		}
 		case 4: {
-			InserimentoPrestazione inserisci = new InserimentoPrestazione();
+			FunzionalitaInterface inserisci = new InserimentoPrestazione();
 			inserisci.execute();
  
 		break; //rompi lo switch ed esci da esso
 		}
 		case 5: {
-			InserimentoMalattia inserisciMalattia = new InserimentoMalattia();
+			FunzionalitaInterface inserisciMalattia = new InserimentoMalattia();
 			inserisciMalattia.execute();
  
 		break; //rompi lo switch ed esci da esso
 		}
 		case 6: {
-			ModificaPrestazione inserisciModifica = new ModificaPrestazione();
+			FunzionalitaInterface inserisciModifica = new ModificaPrestazione();
 			inserisciModifica.execute();
  
 		break; //rompi lo switch ed esci da esso
 		}
 		case 7: {
-			ModificaMalattia modificaMalattia = new ModificaMalattia();
+			FunzionalitaInterface modificaMalattia = new ModificaMalattia();
 			modificaMalattia.execute();
  
 		break; //rompi lo switch ed esci da esso
 		}
 		case 8: {
-			VisualizzazioneSinteticaUtente visualizzaDati = new VisualizzazioneSinteticaUtente();
+			FunzionalitaInterface visualizzaDati = new VisualizzazioneSinteticaUtente();
 			visualizzaDati.execute();
  
 		break; //rompi lo switch ed esci da esso
 		}
 		case 9: {
-			VisualizzazioneEsitiEsamiPeriodici visualizzaEsiti = new VisualizzazioneEsitiEsamiPeriodici();
+			FunzionalitaInterface visualizzaEsiti = new VisualizzazioneEsitiEsamiPeriodici();
 			visualizzaEsiti.execute();
  
 		break; //rompi lo switch ed esci da esso
 		}
 		case 10: {
-			VisualizzazioneEsameDiagnostico visEsame = new VisualizzazioneEsameDiagnostico();
+			FunzionalitaInterface visEsame = new VisualizzazioneEsameDiagnostico();
 			visEsame.execute();
 		break;
 		}

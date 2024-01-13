@@ -10,7 +10,11 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSessi
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InsertDateUtils;
 
-public class InserimentoPrestazione {
+/**
+ * Inserisce una nuova prestazione in base alla selezione dell'esame medico.<br>
+ * La prestazione è legata al paziente e al esame selezionato.
+ */
+public class InserimentoPrestazione implements FunzionalitaInterface {
 	/*
 	 * creare una mappa hash per posizionare le prestazioni, ogni prestazione avrà un suo id 
 	 * 
@@ -105,6 +109,8 @@ public class InserimentoPrestazione {
 				 } while (true);
 				 
 			 }
+			 //assegno ad idPrestazione il valore in ms passati dal 1° gennaio 1970 fino al momento della chiamata
+			 //questa data viene chiamata UNIX EPOCH 
 			 long idPrestazione = System.currentTimeMillis();
 			 prestazione.setIdPrestazione(idPrestazione);
 			

@@ -2,6 +2,11 @@ package com.it.unibs.alessandrobellini.cartellasanitaria.persistence;
 
 import java.io.Serializable;
 
+/**
+ * Classe contenente le informazioni del gruppo sanguinio dell'utente.<br>
+ * Questa classe è un sotto-oggetto di paziente
+ * @see com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Paziente
+ */
 public class GruppoSanguinio implements Serializable {
 	private static final long serialVersionUID = 2366616291727832998L;// quando si scrvie da oggetto java ad un file di 
 	/*

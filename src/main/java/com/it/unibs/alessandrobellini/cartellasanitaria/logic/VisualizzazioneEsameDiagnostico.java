@@ -1,7 +1,5 @@
 package com.it.unibs.alessandrobellini.cartellasanitaria.logic;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -10,7 +8,14 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Esame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 
-public class VisualizzazioneEsameDiagnostico {
+/**
+ * Classe di visualizzazione dell'esame dalla lista della sessione.<br>
+ * Verrà effettuata la ricerca dell'esame da parte dell'utente, dovrà essere selezionato solo
+ * un esame di tipo DIAGNOSTICO.<br>
+ * Verranno stampate le informazioni legate all'esame diagnostico selezionato e le prestazioni
+ * effettuate su di esso.
+ */
+public class VisualizzazioneEsameDiagnostico implements FunzionalitaInterface {
 	
 	public void  execute() {
 		ApplicationSession sessione = ApplicationSession.getIstance();
@@ -50,7 +55,10 @@ public class VisualizzazioneEsameDiagnostico {
 	}
 	
 	
-	
+	/**
+	 * Classe che stampa le info delle prestazioni
+	 * @param prestazioni - Lista delle prestazioni da stampare
+	 */
 	private static void printListaPrestazioni(List<PrestazioneEsame> prestazioni) {
 		ApplicationSession sessione = ApplicationSession.getIstance();
 		StringBuffer sb = new StringBuffer("Prestazioni Mediche ricercate:\n");
@@ -63,7 +71,6 @@ public class VisualizzazioneEsameDiagnostico {
 			sb.append("Data prestazione medica: ").append(prest.getDataEsame()).append('\n');
 			
 		}
-		BigDecimal bd = new BigDecimal("" + prestazioni.size());
 		sb.append("Numero di esami: ").append(prestazioni.size()).append('\n');
 		System.out.println(sb.toString());
 		

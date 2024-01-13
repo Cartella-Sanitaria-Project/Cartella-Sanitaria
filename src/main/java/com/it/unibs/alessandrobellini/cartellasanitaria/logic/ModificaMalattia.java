@@ -13,7 +13,11 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSessi
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InsertDateUtils;
 
-public class ModificaMalattia {
+/**
+ * Modifica di una malattia precedentemente inserita, Si chiederà di selezionare la malattia 
+ * da quelle inserite
+ */
+public class ModificaMalattia implements FunzionalitaInterface {
 	public void execute() {
 		ApplicationSession sessione = ApplicationSession.getIstance();
 		CercaEsame cercaEsame = new CercaEsame();
@@ -65,6 +69,13 @@ public class ModificaMalattia {
 		
 		}
 
+	/**
+	 * Gestisce in base alla selezione la modifica di un dato specifico
+	 * 
+	 * @param inputNum - selettore dell'attributo da modificare
+	 * @param malattia - Struttura malattia da modificare
+	 * @return La malattia come struttura modificata
+	 */
 	private Malattia manageInput(int inputNum, Malattia malattia) {
 		switch (inputNum) {
 			case 1: {

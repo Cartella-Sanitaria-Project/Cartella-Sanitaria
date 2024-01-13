@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe contenente le informazioni di una malattia da collegarsi al paziente
+ */
 public class Malattia implements Serializable {
 	
 	

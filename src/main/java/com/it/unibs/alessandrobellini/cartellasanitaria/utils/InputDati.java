@@ -1,5 +1,9 @@
 package com.it.unibs.alessandrobellini.cartellasanitaria.utils;
 import java.util.*;
+
+/**
+ * Classe di utilità presa dal corso universitario.
+ */
 public class InputDati 
 {
 	  private static Scanner lettore = creaScanner();

@@ -3,6 +3,14 @@ package com.it.unibs.alessandrobellini.cartellasanitaria.persistence;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+/**
+ * Classe contenente le informazioni di un esame medico.
+ * La classe contiene solo le informazioni base per un esame, non è la 
+ * prestazione vera e propria.<br>
+ * Da questa classe possono essere collegate una o più prestazioni.<br>
+ * Per i dati della prestazione eseguita:
+ * @see com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame
+ */
 public class Esame implements Serializable {
 	
 	

@@ -11,7 +11,11 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Malattia;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Paziente;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 
+/**
+ * Classe di utilità per la gestione della visualizzazione di vare informazioni
+ */
 public class VisualizzazioneUtils {
+	
 	private final static String MESSAGGIO_PRINCIPALE = "INSERIRE IL NUMERO DELLA FUNZIONALITA' \n"
 			+ "[0] termina al menù principale \n"
 			+ "[1] Visualizzazione completa dei dati anagarfici \n"
@@ -21,6 +25,10 @@ public class VisualizzazioneUtils {
 	
 	private final static int nFuncMax = 3;
 	
+	/**
+	 * Menu principale per approfondire la visualizzazione dei dati.<br>
+	 * Tramite questa funzione verrà richiesto all'utente di approfondire una sezione di dati
+	 */
 	public static void menuApprofondimento() {
 		boolean onRunning = true;
 		Scanner scanner = null;
@@ -79,12 +87,20 @@ public class VisualizzazioneUtils {
 			
 		}
 		
+		/**
+		 * Visualizzazione dei dati anagrafici legati al paziente
+		 */
 		public static void datiAnagrafici() {
 			ApplicationSession sessione = ApplicationSession.getIstance();
 			Paziente paziente = sessione.getPaziente();
 			System.out.println(paziente.toString());
 			}
 		
+		/**
+		 * Visualizzazione dei dati legati ad un singolo esame passato
+		 * in input
+		 * @param idEsame - ID dell'esame da prendere in sessione stampare
+		 */
 		private static void singoloEsame(Long idEsame) {
 			if (idEsame == null || idEsame == 0L) {
 				System.out.println("Nessun esame trovato");
@@ -111,6 +127,11 @@ public class VisualizzazioneUtils {
 			}
 		}
 		
+		/**
+		 * Visualizzazione dei dati legati ad una singola malattia passata
+		 * in input
+		 * @param idMalattia - ID della malattia da prendere in sessione stampare
+		 */
 		private static void singolaMalattia(Long idMalattia) {
 			if (idMalattia == null || idMalattia == 0L) {
 				System.out.println("Nessuna malattia trovata");
@@ -133,18 +154,6 @@ public class VisualizzazioneUtils {
 							+ "Gli esami richiesti sono : " + malattia.getElencoEsami() + "\n");
 					}
 				}
-			}
-		//oppure 
-		/*  public static void singolaMalattia() {
-			ApplicationSession sessione = ApplicationSession.getIstance();
-			Malattia malattia = sessione.getMlattia();
-			System.out.println(malattia.toString());
-			}
-		 * 
-		 */
-		
-		
-		
-		
+			}		
 }
 

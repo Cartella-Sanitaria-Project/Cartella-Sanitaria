@@ -24,13 +24,20 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Paziente;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 
+/**
+ * Questa classe agisce su file locale JSON, carica o scrive/sovrascrive il file
+ */
 public class SalvaCaricaDati {
 	
+	/**
+	 * Salva i dati di sessione su file JSON.<br>
+	 * In caso il file esista già lo sovrascrive.
+	 */
 	public static void salvaDati() {
 		ApplicationSession sessione = ApplicationSession.getIstance();
 		Gson gson = new GsonBuilder().setPrettyPrinting().create();
 		//motore che trasforma i dati nel json effettivo
-		//libreria di ggolge che consente di creare da oggetti java delle stringhe json
+		//libreria di goolge che consente di creare da oggetti java delle stringhe json
 		JsonObject jsonObject = new JsonObject();
 		
 		jsonObject = serializePaziente(sessione, jsonObject);
@@ -58,7 +65,12 @@ public class SalvaCaricaDati {
 		
 	}
 
-	
+	/**
+	 * 
+	 * Questo metodo carica i dati da file locale su filesystem.
+	 * Il file deve essere in formato JSON con una struttura specifica
+	 * 
+	 */
 	public static void caricaDati() {
 		FileReader fr = null;
 		JsonObject obj = null;

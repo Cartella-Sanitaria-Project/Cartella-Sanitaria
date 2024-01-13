@@ -8,7 +8,13 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneE
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.VisualizzazioneUtils;
 
-public class VisualizzazioneSinteticaUtente {
+/**
+ * Classe principale di visualizzazione delle informazioni del paziente.
+ * In questa classe vengono stampate le info principali del paziente e sarà richiesto
+ * un selettore per visualizzare il dettaglio di una informazione.
+ */
+public class VisualizzazioneSinteticaUtente implements FunzionalitaInterface {
+	
 	public void  execute() {
 		ApplicationSession sessione = ApplicationSession.getIstance();
 		sessione.getPaziente();
@@ -19,7 +25,7 @@ public class VisualizzazioneSinteticaUtente {
 		st.append("Cognome : " + sessione.getPaziente().getCognome() + "\n");
 		st.append('\n');
 		st.append("[Lista esami]\n");
-		//
+		
 		Map <Long , PrestazioneEsame> prestazioni = sessione.getPrestazioni();
 		Map <Long , Esame> esami = sessione.getEsami();
 		for (Map.Entry<Long, PrestazioneEsame> entry : prestazioni.entrySet()) {

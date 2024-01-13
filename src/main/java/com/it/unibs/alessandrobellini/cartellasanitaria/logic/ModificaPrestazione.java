@@ -11,7 +11,13 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSessi
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InsertDateUtils;
 
-public class ModificaPrestazione {
+/**
+ * Modifica di una prestazione medica precedentemente inserita.<br>
+ * Viene richiesta la ricerca delle prestazioni tra quelle in lista di sessione.
+ * 
+ */
+public class ModificaPrestazione implements FunzionalitaInterface {
+	
 	public void execute() {
 		boolean val = true;
 		ApplicationSession sessione = ApplicationSession.getIstance();
@@ -65,7 +71,9 @@ public class ModificaPrestazione {
 						}
 				}
 		}
-		/*
+	
+		/**
+		 * Gestione del selettore e modifica dell'attributo nella struttura PrestazioneEsame
 		 * 
 		 */
 		public PrestazioneEsame manageInput(int inputNum , PrestazioneEsame iPrestazione) {

@@ -6,7 +6,14 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSessi
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.PazienteUtils;
 
-public class InizializzaDati {
+/**
+ * Inizializza i dati anagrafici del paziente, è utilizzabile solo all'inizio se i dati
+ * del paziente non sono ancora stati settati.<br>
+ * Se il paziente contiene già dei dati, modificarli tramite:
+ * @see com.it.unibs.alessandrobellini.cartellasanitaria.logic.AggiornaDati
+ */
+public class InizializzaDati implements FunzionalitaInterface {
+	
 	public void execute() {
 		ApplicationSession sessione = ApplicationSession.getIstance();
 		

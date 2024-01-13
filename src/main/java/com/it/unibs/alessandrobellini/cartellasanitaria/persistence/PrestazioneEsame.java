@@ -2,6 +2,16 @@ package com.it.unibs.alessandrobellini.cartellasanitaria.persistence;
 
 import java.io.Serializable;
 
+/**
+ * Classe contenente i dati specifici di una prestazione medica eseguita dal paziente.
+ * I dati contenuti sono collegati ad un esame medico tramite il salvataggio di un 
+ * ID (idEsame).<br>
+ * Inoltre c'è il collegamento anche alla struttura Malattia in caso la prestazione
+ * sia collegata ad una malattia del paziente (idMalattia).
+ * Per la classe di Esame o di Malattia:
+ * @see com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Esame
+ * @see com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Malattia
+ */
 public class PrestazioneEsame implements Serializable {
 
 	private static final long serialVersionUID = -3380113282146830856L;

@@ -8,9 +8,10 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Malattia;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Paziente;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame;
 
-/*
- * singleton : una sola istanza per tutta l'applicazione
- * 
+/**
+ * singleton : una sola istanza per TUTTA l'applicazione<br>
+ * Questa classe contiene tutte le informazioni dei dati utilizzati nel programma.
+ *  Viene usata anche dalla classe di scrittura su file.
  */
 public class ApplicationSession {
 	
@@ -35,10 +36,18 @@ public class ApplicationSession {
 	private ApplicationSession() {
 		//nessuna altra classe può creare sessioni, solo questa
 		paziente = new Paziente();
-		esami = new HashMap<>();// tramite l'hash accede direttamente al dato senza ciclare tutti gli altri, lo ragguiugne per indirizzo
+		esami = new HashMap<>();
+		// tramite l'hash accede direttamente al dato senza ciclare tutti gli altri, lo ragguiugne per indirizzo
 		prestazioni = new HashMap<>();
 		malattie = new HashMap<>();
 	}
+	/**
+	 * Ritorna l'istanza univoca per tutto il software.<br>
+	 * Se non è ancora stata creata un'istanza, ne crea una nuova, 
+	 * altrimenti ritorna quella attiva
+	 * 
+	 * @return l'istanza di sessione attiva
+	 */
 	public static ApplicationSession getIstance() {
 		if(istance == null)
 			istance = new ApplicationSession();

@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe contenente i dati anagrafici del paziente
+ */
 public class Paziente implements Serializable {
 	
 	private static final long serialVersionUID = 7976957993890447449L;

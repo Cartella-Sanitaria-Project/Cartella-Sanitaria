@@ -6,7 +6,10 @@ import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Esame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
 
-public class AggiungiEsame {
+/**
+ * Classe che aggiunge un esame medico (Struttura con informazioni mediche - non prestazione del paziente)
+ */
+public class AggiungiEsame implements FunzionalitaInterface {
 	public void execute () {
 		System.out.println("inserimento di un nuovo esame medico\n"
 				+ "inserisci 0 per tornare al menù principale oppure un altro carattere "
@@ -56,6 +59,12 @@ public class AggiungiEsame {
 	}
 	
 	
+	/**
+	 * Esame può essere di una tipologia (DIAGNOSTICO o PERIODICO).<br>
+	 * La funzione controlla se l'input è di una tipologia valida
+	 * @param tipologia - da controllare
+	 * @return booleano indicante se la tipologia inserita è corretta
+	 */
 	private boolean isTipologiaValid(String tipologia) {
 		if(tipologia == null || tipologia.isEmpty()) {
 			return false;
