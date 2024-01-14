@@ -1,5 +1,5 @@
 # COMPILAZIONE
-Per compilare il software è necessario avere installato sulla macchina la versione della JDK 17 o superiore.
+Per compilare il software è necessario avere installato sulla macchina la versione della JDK 17 o superiore, inoltre è necessaria una connessione internet.
 Per effettuare la compilazione si utilizza Maven, si può averlo installato sulla macchina o in alternativa utilizzare il wrapper:
 
 Build con Maven installato

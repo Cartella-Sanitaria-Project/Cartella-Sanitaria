@@ -1,4 +1,5 @@
 package com.it.unibs.alessandrobellini.cartellasanitaria.logic;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Map;
 import java.util.Scanner;
@@ -6,6 +7,8 @@ import java.util.Scanner;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Esame;
+import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.Malattia;
 import com.it.unibs.alessandrobellini.cartellasanitaria.persistence.PrestazioneEsame;
 import com.it.unibs.alessandrobellini.cartellasanitaria.session.ApplicationSession;
 import com.it.unibs.alessandrobellini.cartellasanitaria.utils.InputDati;
@@ -37,12 +40,18 @@ public class ModificaPrestazione implements FunzionalitaInterface {
 		while(val) {
 				PrestazioneEsame prestazioneObj = sessione.getPrestazioni().get(id);
 				long idPrestazione = prestazioneObj.getIdPrestazione();
+				Malattia malattia = null;
+				if (prestazioneObj.getIdMalattia() != 0L)
+					malattia = sessione.getMalattie().get(prestazioneObj.getIdMalattia());
+				String nomeMalattia = "";
+				if (malattia != null && malattia.getNome() != null)
+					nomeMalattia = malattia.getNome();
 				System.out.println();
 				System.out.println("selezionare la voce da modificare : "
 						+ "\n[0] annulla la modifica e torna al menù principale :"
 						+ "\n[1] data dell'esame : \n" + prestazioneObj.getDataEsame()    
 						+ "\n[2] luogo dell'esame : \n" + prestazioneObj.getLuogoEsame() 
-						+ "\n[3] malattia : \n" + prestazioneObj.getIdMalattia()
+						+ "\n[3] malattia : \n" + nomeMalattia
 						+ "\n[4] esito : \n" + prestazioneObj.getEsito());
 				System.out.println();
 				
@@ -101,7 +110,30 @@ public class ModificaPrestazione implements FunzionalitaInterface {
 			}
 			case 4: {
 				String esito = InputDati.leggiStringaNonVuota("inserire il nuovo esito ");
-				iPrestazione.setEsito(esito); 
+				Esame esameSelezionato = ApplicationSession.getIstance().getEsami().get(iPrestazione.getIdEsame());
+				if (esito != null && !esito.isEmpty()){
+					 try { 
+						 BigDecimal esitoNumerico = NumberUtils.createBigDecimal(esito);
+						 BigDecimal normMin = esameSelezionato.getValoreNormalitaMin(),
+								 normMax = esameSelezionato.getValoreNormalitaMax(),
+								 soglia = esameSelezionato.getSogliaErroreInserimento();
+						 
+						 BigDecimal valoreErroreMinimo = normMin.subtract(soglia);
+						 BigDecimal valoreErroreMassimo = normMax.add(soglia);
+						 
+						 if (esitoNumerico.compareTo(valoreErroreMinimo) < 0) {
+							 System.out.println("Valore troppo basso rispetto alla soglia di errore");
+						 } else if (esitoNumerico.compareTo(valoreErroreMassimo) > 0) {
+							 System.out.println("Valore troppo alto rispetto alla soglia di errore");
+						 } else {
+							 iPrestazione.setEsito(esito);
+							 break;
+						 }
+						 
+					 } catch (NumberFormatException e) {
+						System.out.println("Il valore dell'esito deve essere numerico");
+					 }
+				}
 			break; 
 			}
 			default:

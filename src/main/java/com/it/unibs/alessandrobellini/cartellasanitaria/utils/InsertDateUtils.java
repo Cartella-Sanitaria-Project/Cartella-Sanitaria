@@ -28,7 +28,7 @@ public class InsertDateUtils {
 				dataCorretta = PazienteUtils.isDataValid(dataGiorno);
 				if(!dataCorretta) System.out.println("la data inserita non è corretta");
 				else {
-					DateFormat dFday = new SimpleDateFormat("yyyy-MM-dd");
+					DateFormat dFday = new SimpleDateFormat("yyyy'-'MM'-'dd");
 					try {
 						Date date = dFday.parse(dataGiorno);
 						dataCompleta.setTime(date);
@@ -77,7 +77,7 @@ public class InsertDateUtils {
 			dataCorretta = PazienteUtils.isDataValid(dataGiorno);
 			if(!dataCorretta) System.out.println("la data inserita non è corretta");
 			else {
-				DateFormat dFday = new SimpleDateFormat("yyyy-MM-dd");
+				DateFormat dFday = new SimpleDateFormat("yyyy'-'MM'-'dd");
 				try {
 					Date date = dFday.parse(dataGiorno);
 					return date;
@@ -103,7 +103,7 @@ public class InsertDateUtils {
 			// data non corretta con il formato atteso
 			return null;
 		}
-		DateFormat dFday = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat dFday = new SimpleDateFormat("yyyy'-'MM'-'dd");
 		try {
 			Date date = dFday.parse(dataInput);
 			return date;
